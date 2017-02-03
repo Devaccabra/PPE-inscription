@@ -14,8 +14,7 @@ import inscriptions.Competition;
 import inscriptions.Inscriptions;
 
 public class Connexion {
-	/*j'ai bien push !
-	faire tests interrupteur true/false dans la couch metier directement dans la fonction DELETE du prof*/
+	
 	private static Connection connexion = null;
 	private static Statement statement;
 	private boolean interrupteur = true;
