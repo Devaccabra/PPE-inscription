@@ -1,5 +1,5 @@
 package inscriptions;
-import database.bdd;
+
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import database.Connexion;
 
 /**
  * Point d'entrée dans l'application, un seul objet de type Inscription
