@@ -39,7 +39,7 @@ public class Connexion {
 	{
 		try
 		{
-			Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/inscriptionssportives", "root","");
+			Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/inscriptions", "root","");
 			//Connection connexion = DriverManager.getConnection("jdbc:mysql://mysql.m2l.local/dmerigou", "dmerigou","GP2dC3US");
 			this.connexion = connexion;
 
@@ -144,7 +144,7 @@ public class Connexion {
 			
 
 			statement = connexion.createStatement();
-			int ajoutCompet = statement.executeUpdate( "INSERT INTO competition (compet_nom,compet_dateCloture,compet_enEquipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")");
+			int ajoutCompet = statement.executeUpdate( "INSERT INTO competition (nom,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")");
 			
 	        if ( ajoutCompet == 1) {
 	        	
@@ -170,7 +170,7 @@ public class Connexion {
 			statement = connexion.createStatement();
 			 
 			 
-		        	int ModifCand = statement.executeUpdate( "UPDATE candidat SET cand_nom = '"+ nouveauNom +"' WHERE cand_nom='"+ ancienNom +"'" );
+		        	int ModifCand = statement.executeUpdate( "UPDATE candidat SET nom = '"+ nouveauNom +"' WHERE nom='"+ ancienNom +"'" );
 		        	if(ModifCand == 1)
 		        	{
 		        		System.out.println("Modification du nom de la personne réussi" );
@@ -195,7 +195,7 @@ public class Connexion {
 			/* int ModifDate = statement.executeUpdate( "UPDATE personne SET idPers = "+ date +" WHERE idCompet = "+ idCompet +"" );*/
 			statement = connexion.createStatement();
 			 
-			 int ModifPers = statement.executeUpdate("UPDATE personne SET pers_prenom = '"+ nouveauPrenom +"' WHERE pers_prenom = '"+ ancienPrenom +"'");
+			 int ModifPers = statement.executeUpdate("UPDATE personne SET prenom = '"+ nouveauPrenom +"' WHERE prenom = '"+ ancienPrenom +"'");
 			 
 		        if(ModifPers == 1)
 		        {
@@ -220,7 +220,7 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			 
-			 int ModifPers = statement.executeUpdate("UPDATE personne SET pers_mail = '"+ nouveauMail +"' WHERE pers_mail = '"+ ancienMail +"'");
+			 int ModifPers = statement.executeUpdate("UPDATE personne SET mail = '"+ nouveauMail +"' WHERE mail = '"+ ancienMail +"'");
 			 
 		        if(ModifPers == 1)
 		        {
@@ -248,7 +248,7 @@ public class Connexion {
 			statement = connexion.createStatement();
 			 
 			 
-		        	int ModifCand = statement.executeUpdate( "UPDATE competition SET compet_nom = '"+ nouveauNom +"' WHERE compet_nom='"+ ancienNom +"'" );
+		        	int ModifCand = statement.executeUpdate( "UPDATE competition SET nom = '"+ nouveauNom +"' WHERE nom='"+ ancienNom +"'" );
 		        	if(ModifCand == 1)
 		        	{
 		        		System.out.println("Le nom de la compet a été mis à jour" );
@@ -275,7 +275,7 @@ public class Connexion {
 			statement = connexion.createStatement();
 			 
 			 
-		    int ModifCand = statement.executeUpdate( "UPDATE candidat SET cand_nom = '"+ nouveauNom +"' WHERE cand_nom='"+ ancienNom +"'" );
+		    int ModifCand = statement.executeUpdate( "UPDATE candidat SET nom = '"+ nouveauNom +"' WHERE nom='"+ ancienNom +"'" );
 		    if(ModifCand == 1)
 		    {
 		        System.out.println("Modification du nom de l'équipe réussi" );
@@ -298,7 +298,7 @@ public class Connexion {
 		{
 			 Statement statement = null;
 			 statement = connexion.createStatement();
-			 int ModifDate = statement.executeUpdate( "UPDATE competition SET compet_dateCloture = "+ date +" WHERE id_compet = "+ idCompet +"" );
+			 int ModifDate = statement.executeUpdate( "UPDATE competition SET date_cloture = "+ date +" WHERE id_comp = "+ idCompet +"" );
 		        System.out.println( "Affichage des candidats" );
 		        
 		        if(ModifDate == 1){
@@ -324,7 +324,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT id_cand,cand_nom FROM candidat WHERE cand_nom = '"+Nom+"'");
+			resultat = statement.executeQuery( "SELECT id_c,nom FROM candidat WHERE nom = '"+Nom+"'");
 												
 	        while ( resultat.next())
 	        {
@@ -351,7 +351,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT id_compet,compet_nom FROM competition WHERE compet_nom = '"+Nom+"'");
+			resultat = statement.executeQuery( "SELECT id_comp,nom FROM competition WHERE nom = '"+Nom+"'");
 												
 	        while ( resultat.next())
 	        {
@@ -379,12 +379,12 @@ public class Connexion {
 			int id = recupID(nomCand);
 			statement = connexion.createStatement();
 			
-			int SupprCandidat = statement.executeUpdate( "DELETE FROM candidat WHERE id_cand = "+id+"" );
+			int SupprCandidat = statement.executeUpdate( "DELETE FROM candidat WHERE id_c = "+id+"" );
 			int SupprCandidatInscr = statement.executeUpdate( "DELETE FROM `candidat_has_competition` WHERE `Candidat_id_candidat`= "+id+"");
 			
 			if(verifCand(id) == 1)
 			{
-				int supprEquipe = statement.executeUpdate("DELETE FROM equipe WHERE id_equipe = "+ id +"");
+				int supprEquipe = statement.executeUpdate("DELETE FROM composer_equipe WHERE id_equipe = "+ id +"");
 				if(supprEquipe == 1)
 				{
 					System.out.println("Equipe supprimée" );
@@ -395,7 +395,7 @@ public class Connexion {
 			}
 			else
 			{
-				int supprPers = statement.executeUpdate("DELETE FROM personne WHERE id_personne ="+id+"");
+				int supprPers = statement.executeUpdate("DELETE FROM personne WHERE id_p ="+id+"");
 				if(supprPers == 1)
 				{
 					System.out.println("Suppression de la personne réussi" );
@@ -419,11 +419,11 @@ public class Connexion {
 		{
 			statement = connexion.createStatement();
 			ResultSet verifCandCompet = null;
-			verifCandCompet = statement.executeQuery("SELECT Candidat_id_candidat,Competition_id_compet FROM candidat_has_competition WHERE Candidat_id_candidat ="+idCand+" AND Competition_id_compet ="+idCompet+"");
+			verifCandCompet = statement.executeQuery("SELECT candidat_id,competition_id FROM candidat_competition WHERE candidat_id ="+idCand+" AND competition_id ="+idCompet+"");
 			if(verifCandCompet.next())
 			{
 				 ResultSet VerifNomCompet = null;
-				 VerifNomCompet = statement.executeQuery( "SELECT compet_nom FROM competition C, candidat_has_competition CC WHERE C.id_compet = CC.Competition_id_compet AND id_compet ="+idCompet+"" );
+				 VerifNomCompet = statement.executeQuery( "SELECT c_nom FROM competition C, candidat_competition CC WHERE C.id_comp = CC.competiton_id AND id_comp ="+idCompet+"" );
 				 while(VerifNomCompet.next())
 			     {
 					 
@@ -437,10 +437,10 @@ public class Connexion {
 				if(cand == 1)
 				{
 					ResultSet verifEnEquipe = null;
-					verifEnEquipe = statement.executeQuery("SELECT * FROM competition WHERE compet_enEquipe = 1 AND id_compet = "+idCompet+"");
+					verifEnEquipe = statement.executeQuery("SELECT * FROM competition WHERE en_equipe = 1 AND id_comp = "+idCompet+"");
 					if(verifEnEquipe.next())
 					{
-						int insertCandCompet = statement.executeUpdate( "INSERT INTO candidat_has_competition (Candidat_id_candidat,Competition_id_compet) VALUES ("+idCand+","+idCompet+")");
+						int insertCandCompet = statement.executeUpdate( "INSERT INTO candidat_competition (candidat_id,competition_id) VALUES ("+idCand+","+idCompet+")");
 						if(insertCandCompet == 1)
 						{
 							System.out.println("Vous vous etes bien inscris a la competition n°"+idCompet+"");
@@ -459,10 +459,10 @@ public class Connexion {
 				{
 
 					ResultSet verifEnEquipe = null;
-					verifEnEquipe = statement.executeQuery("SELECT * FROM competition WHERE compet_enEquipe = 0 AND id_compet = "+idCompet+"");
+					verifEnEquipe = statement.executeQuery("SELECT * FROM competition WHERE en_equipe = 0 AND id_comp = "+idCompet+"");
 					if(verifEnEquipe.next())
 					{
-						int insertCandCompet = statement.executeUpdate( "INSERT INTO candidat_has_competition (Candidat_id_candidat,Competition_id_compet) VALUES ("+idCand+","+idCompet+")");
+						int insertCandCompet = statement.executeUpdate( "INSERT INTO candidat_competition (Ccandidat_id,competition_id) VALUES ("+idCand+","+idCompet+")");
 						if(insertCandCompet == 1)
 						{
 							System.out.println("Vous vous etes bien inscrit pour participer a la competition n°"+idCompet+"");
@@ -496,7 +496,7 @@ public class Connexion {
 		{
 			statement = connexion.createStatement();
 			ResultSet verifPersEquipe = null;
-			verifPersEquipe = statement.executeQuery("SELECT Personne_id_personne, Equipe_id_equipe FROM personne_has_equipe WHERE Personne_id_personne ="+idPers+" AND Equipe_id_equipe ="+idEquipe+"");
+			verifPersEquipe = statement.executeQuery("SELECT personne_id, equipe_id FROM personne_equipe WHERE personne_id ="+idPers+" AND equipe_id ="+idEquipe+"");
 			if(verifPersEquipe.next())
 			{
 				System.out.println("Vous etes deja inscrit dans l'equipe n "+idEquipe+"");
@@ -504,10 +504,10 @@ public class Connexion {
 			else
 			{
 				ResultSet verifPers = null;
-				verifPers = statement.executeQuery("SELECT id_personne, pers_prenom FROM personne WHERE id_personne = "+idPers+"");
+				verifPers = statement.executeQuery("SELECT id_p, prenom FROM personne WHERE id_p = "+idPers+"");
 				if(verifPers.next())
 				{
-					int insertPersEquipe = statement.executeUpdate( "INSERT INTO personne_has_equipe (Personne_id_personne,Equipe_id_equipe) VALUES ("+idPers+","+idEquipe+")");
+					int insertPersEquipe = statement.executeUpdate( "INSERT INTO personne_equipe (personne_id,equipe_id) VALUES ("+idPers+","+idEquipe+")");
 						
 					if(insertPersEquipe == 1)
 					{
@@ -573,12 +573,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT cand_nom, id_equipe FROM Candidat C, Equipe E WHERE E.id_equipe = C.id_Cand" );
+			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM Candidat C, Equipe E WHERE E.id_equipe = C.id_c" );
 	        
 	        while ( resultat.next())
 	        {
 	        	int idEquipe = resultat.getInt("id_equipe");
-	        	String Nom = resultat.getString("cand_nom");
+	        	String Nom = resultat.getString("nom_c");
 
 	        	 maliste.put(Nom, idEquipe);
 	        	System.out.println("Equipe n°"+ idEquipe + " - " + Nom);
@@ -611,7 +611,7 @@ public class Connexion {
 				int id = recupIDCompet(NomCompet);
 				statement = connexion.createStatement();
 
-				int SupprCompet = statement.executeUpdate( "DELETE FROM competition WHERE id_compet = "+ id  +"" );
+				int SupprCompet = statement.executeUpdate( "DELETE FROM competition WHERE id_comp = "+ id  +"" );
 
 		        if(SupprCompet == 1){
 		        	System.out.println("La suppression a bien ete prise en compte" );
@@ -634,12 +634,12 @@ public class Connexion {
 			int id = recupID(nomCand);
 			statement = connexion.createStatement();
 			System.out.println(id);
-			 int SupprPers = statement.executeUpdate("DELETE FROM personne WHERE id_personne = "+ id +"");
+			 int SupprPers = statement.executeUpdate("DELETE FROM personne WHERE id_p = "+ id +"");
 			 
 		        if(SupprPers == 1)
 		        {
 		        	System.out.println("1ere etape de suppression" );
-		        	int SupprCand = statement.executeUpdate( "DELETE FROM candidat WHERE id_cand = "+ id +"" );
+		        	int SupprCand = statement.executeUpdate( "DELETE FROM candidat WHERE id_c = "+ id +"" );
 		        	if(SupprCand == 1)
 		        	{
 		        		System.out.println("La suppression de l'equipe a bien ete prise en compte" );
@@ -661,7 +661,9 @@ public class Connexion {
 	{
 
 		/*Connexion connect = new Connexion();
-		connect.ajouterCandidat("garnier");*/
+		connect.ajouterCandidat("Jewbaccabra");
+		connect.ajouterCandidat("MrReYz");
+		connect.ajouterCandidat("SuceurDeQueue");*/
 		
 	}
 
