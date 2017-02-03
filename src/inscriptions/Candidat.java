@@ -15,7 +15,7 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	private static final long serialVersionUID = -6035399822298694746L;
 	private Inscriptions inscriptions;
 	private String nom;
-	private Set<Competition> competitions;
+	private Set<Competition> competitions;//???????????
 	
 	Candidat(Inscriptions inscriptions, String nom)
 	{
@@ -51,7 +51,7 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 
 	public Set<Competition> getCompetitions()
 	{
-		return Collections.unmodifiableSet(competitions);
+		return Collections.unmodifiableSet(competitions);//?
 	}
 	
 	boolean add(Competition competition)

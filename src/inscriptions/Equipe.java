@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 /**
  * Représente une Equipe. C'est-à-dire un ensemble de personnes pouvant 
- * s'inscrire à une compétition.
+ * s'inscrire à une comp�tition.
  * 
  */
 

@@ -8,20 +8,18 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
-
 /**
- * ReprÈsente une compÈtition, c'est-‡-dire un ensemble de candidats 
- * inscrits ‡ un ÈvÈnement, les inscriptions sont closes ‡ la date dateCloture.
+ * Repr√©sente une comp√©tition, c'est-√†-dire un ensemble de candidats 
+ * inscrits √† un √©v√©nement, les inscriptions sont closes √† la date dateCloture.
  *
  */
 
-@SuppressWarnings("unused")
 public class Competition implements Comparable<Competition>, Serializable
 {
 	private static final long serialVersionUID = -2882150118573759729L;
 	private Inscriptions inscriptions;
 	private String nom;
-	private Set<Candidat> candidats;
+	private Set<Candidat> candidats;//????????
 	private Date dateCloture;
 	private boolean enEquipe = false;
 
@@ -42,27 +40,6 @@ public class Competition implements Comparable<Competition>, Serializable
 	public String getNom()
 	{
 		return nom;
-	}
-	
-	/**
-	 * Modifie le nom de la comp√©tition.
-	 */
-	
-	public void setNom(String nom)
-	{
-		this.nom = nom ;
-	}
-	
-	/**
-	 * Retourne vrai si les inscriptions sont encore ouvertes, 
-	 * faux si les inscriptions sont closes.
-	 * @return
-	 */
-	
-	public boolean inscriptionsOuvertes()
-	{
-		// TODO retourner vrai si et seulement si la date syst√®me est ant√©rieure √† la date de cl√¥ture.
-		return true;
 	}
 	
 	/**
@@ -93,7 +70,7 @@ public class Competition implements Comparable<Competition>, Serializable
 	
 	public void setDateCloture(Date dateCloture)
 	{
-		// TODO vÈrifier que l'on avance pas la date.
+		// TODO v√©rifier que l'on avance pas la date.
 		
 		if (this.getDateCloture() == null)
 			this.dateCloture = dateCloture;
@@ -101,6 +78,21 @@ public class Competition implements Comparable<Competition>, Serializable
 			this.dateCloture = dateCloture;
 	}
 	
+	/**
+	 * TODO retourne true si les inscriptions sont toujours ouvertes.
+	 * Dans le cas contraire retourne false.
+	 */
+	
+	public boolean inscriptionEstOuverte ()
+	{
+		Date today =  Calendar.getInstance().getTime();
+		
+		if(this.getDateCloture().before(today))
+		{
+			return false;
+		}
+		return true;
+	}
 	/**
 	 * Retourne l'ensemble des candidats inscrits.
 	 * @return
@@ -112,15 +104,15 @@ public class Competition implements Comparable<Competition>, Serializable
 	}
 	
 	/**
-	 * Inscrit un candidat de type Personne ‡ la compÈtition. Provoque une
-	 * exception si la compÈtition est rÈservÈe aux Èquipes.
+	 * Inscrit un candidat de type Personne √† la comp√©tition. Provoque une
+	 * exception si la comp√©tition est r√©serv√©e aux √©quipes.
 	 * @param personne
 	 * @return
 	 */
 	
 	public boolean add(Personne personne)
 	{
-		// TODO vÈrifier que la date de clÙture n'est pas passÈe
+		// TODO v√©rifier que la date de cl√¥ture n'est pas pass√©e
 		
 		Date today = Calendar.getInstance().getTime();
 		if(this.getDateCloture() == null)
@@ -140,15 +132,15 @@ public class Competition implements Comparable<Competition>, Serializable
 	}
 
 	/**
-	 * Inscrit un candidat de type Equipe ‡ la compÈtition. Provoque une
-	 * exception si la compÈtition est rÈservÈe aux personnes.
+	 * Inscrit un candidat de type Equipe √† la comp√©tition. Provoque une
+	 * exception si la comp√©tition est r√©serv√©e aux personnes.
 	 * @param personne
 	 * @return
 	 */
 
 	public boolean add(Equipe equipe)
 	{
-		// TODO vÈrifier que la date de clÙture n'est pas passÈe
+		// TODO v√©rifier que la date de cl√¥ture n'est pas pass√©e
 		
 		Date today = Calendar.getInstance().getTime();
 		if(this.getDateCloture() == null)
@@ -168,7 +160,7 @@ public class Competition implements Comparable<Competition>, Serializable
 	}
 
 	/**
-	 * DÈsinscrit un candidat.
+	 * D√©sinscrit un candidat.
 	 * @param candidat
 	 * @return
 	 */
@@ -180,7 +172,7 @@ public class Competition implements Comparable<Competition>, Serializable
 	}
 	
 	/**
-	 * Supprime la compÈtition de l'application.
+	 * Supprime la comp√©tition de l'application.
 	 */
 	
 	public void delete()
