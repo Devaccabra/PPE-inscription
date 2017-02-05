@@ -39,7 +39,6 @@ public class Connexion {
 		try
 		{
 			Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/inscriptions", "root","");
-			//Connection connexion = DriverManager.getConnection("jdbc:mysql://mysql.m2l.local/dmerigou", "dmerigou","GP2dC3US");
 			this.connexion = connexion;
 
 			
