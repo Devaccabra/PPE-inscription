@@ -79,7 +79,7 @@ public class Inscriptions implements Serializable
 	 * @return
 	 */
 	
-	public Competition createCompetition(String nom, Date dateCompet, boolean enEquipe)
+	public Competition createCompetition(String nom, LocalDate dateCompet, boolean enEquipe)
 	{
 		/*if(!getInitBdd())
 		{*/

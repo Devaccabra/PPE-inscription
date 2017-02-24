@@ -11,8 +11,8 @@ import inscriptions.*;
 public class CompetitionTest {
 	
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
-	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", null, true);
-	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
+	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", LocalDate.of(2018, 01, 01), true);
+	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", LocalDate.of(2017, 01, 01), false);
 	Personne personneTest = inscriptionTest.createPersonne ("TEST", "test", "tTEST@gmail.com");
 	Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
 
@@ -23,7 +23,7 @@ public class CompetitionTest {
 
 	@Test
 	public void testGetDateCloture() {
-		assertEquals(null, competitionEquipeTest.getDateCloture());
+		assertEquals(LocalDate.of(2018, 01, 01), competitionEquipeTest.getDateCloture());
 	}
 
 	@Test
@@ -31,18 +31,22 @@ public class CompetitionTest {
 		assertEquals(true, competitionEquipeTest.estEnEquipe());
 	}
 
-	@Test
+	@Test(expected = inscriptions.DateInvalide.class)
 	public void testSetDateCloture() {
 		
-		 	
-  		assertEquals(LocalDate.of(2017, 02, 11), competitionEquipeTest.getDateCloture());
+		competitionEquipeTest.setDateCloture(LocalDate.of(2017, 02, 11));
+  		assertEquals(LocalDate.of(2018, 01, 01), competitionEquipeTest.getDateCloture());
+  		
+		competitionEquipeTest.setDateCloture(LocalDate.of(2018, 02, 11));
+  		assertEquals(LocalDate.of(2018, 02, 11), competitionEquipeTest.getDateCloture());
 	}
 	
 	@Test
 	public void testInscriptionEstOuverte(){
 		LocalDate dateTest = LocalDate.of(2018,05,05);
 		LocalDate dateTest2 = LocalDate.of(2012,05,05);
-		assertTrue(competitionEquipeTest.inscriptionEstOuverte() && !competitionSoloTest.inscriptionEstOuverte());
+		assertTrue(competitionEquipeTest.inscriptionEstOuverte());
+		assertFalse(competitionSoloTest.inscriptionEstOuverte());
 	}
 	@Test
 	public void testGetCandidats() {

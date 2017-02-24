@@ -1,6 +1,6 @@
 package inscriptions;
 
-public class DateInvalide extends Exception
+public class DateInvalide extends RuntimeException
 {
 	public DateInvalide(){
 		System.out.println("Date Invalide");

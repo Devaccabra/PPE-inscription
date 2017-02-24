@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
+//import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -20,10 +20,10 @@ public class Competition implements Comparable<Competition>, Serializable
 	private Inscriptions inscriptions;
 	private String nom;
 	private Set<Candidat> candidats;//????????
-	private Date dateCloture;
+	private LocalDate dateCloture;
 	private boolean enEquipe = false;
 
-	Competition(Inscriptions inscriptions, String nom, Date dateCloture, boolean enEquipe)
+	Competition(Inscriptions inscriptions, String nom, LocalDate dateCloture, boolean enEquipe)
 	{
 		this.enEquipe = enEquipe;
 		this.inscriptions = inscriptions;
@@ -47,7 +47,7 @@ public class Competition implements Comparable<Competition>, Serializable
 	 * @return
 	 */
 	
-	public Date getDateCloture()
+	public LocalDate getDateCloture()
 	{
 		return dateCloture;
 	}
@@ -68,14 +68,16 @@ public class Competition implements Comparable<Competition>, Serializable
 	 * @param dateCloture
 	 */
 	
-	public void setDateCloture(Date dateCloture)
+	public void setDateCloture(LocalDate dateCloture)
 	{
 		// TODO vérifier que l'on avance pas la date.
 		
 		if (this.getDateCloture() == null)
 			this.dateCloture = dateCloture;
-		else if(dateCloture.after(this.getDateCloture()))
+		else if(dateCloture.isAfter(this.getDateCloture()))
 			this.dateCloture = dateCloture;
+		else
+			throw new DateInvalide();
 	}
 	
 	/**
@@ -85,13 +87,10 @@ public class Competition implements Comparable<Competition>, Serializable
 	
 	public boolean inscriptionEstOuverte ()
 	{
-		Date today =  Calendar.getInstance().getTime();
-		
-		if(this.getDateCloture().before(today))
-		{
-			return false;
-		}
-		return true;
+		if (this.getDateCloture() == null)
+			return true;
+		LocalDate today =  LocalDate.now();
+		return !(this.getDateCloture().isBefore(today));
 	}
 	/**
 	 * Retourne l'ensemble des candidats inscrits.
@@ -114,13 +113,13 @@ public class Competition implements Comparable<Competition>, Serializable
 	{
 		// TODO vérifier que la date de clôture n'est pas passée
 		
-		Date today = Calendar.getInstance().getTime();
+		LocalDate today = LocalDate.now();
 		if(this.getDateCloture() == null)
 		{
 			personne.add(this);
 			return candidats.add(personne);
 		}
-		else if(today.before(this.getDateCloture()))
+		else if(today.isBefore(this.getDateCloture()))
 		{
 				if (enEquipe)
 				{
@@ -142,13 +141,13 @@ public class Competition implements Comparable<Competition>, Serializable
 	{
 		// TODO vérifier que la date de clôture n'est pas passée
 		
-		Date today = Calendar.getInstance().getTime();
+		LocalDate today = LocalDate.now();
 		if(this.getDateCloture() == null)
 		{
 			equipe.add(this);
 			return candidats.add(equipe);
 		}
-		if(today.before(this.getDateCloture()))
+		if(today.isBefore(this.getDateCloture()))
 		{
 			if (!enEquipe)
 			{

@@ -43,7 +43,7 @@ public class Connexion {
 
 			
 
-			System.out.println("Connection réussi");
+			System.out.println("Connection rÃ©ussi");
 
 
 		}
@@ -65,7 +65,7 @@ public class Connexion {
 			int ajoutCand = statement.executeUpdate( "INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"') ");
 			if(ajoutCand == 1)
 			{
-				System.out.println( "Ajout du candidat réussi");
+				System.out.println( "Ajout du candidat rÃ©ussi");
 			}
 			else
 			{
@@ -90,10 +90,10 @@ public class Connexion {
 			if ( ajoutPers == 1) {
 	        	
 	        	
-	        	System.out.println("Ajout de la personne réussi" );
+	        	System.out.println("Ajout de la personne rÃ©ussi" );
 	        }
 	        else{
-	        	System.out.println("L'ajout de la personne n'a pas ete enregistré");
+	        	System.out.println("L'ajout de la personne n'a pas ete enregistrÃ©");
 	        }
 		}
 		catch(Exception e)
@@ -115,25 +115,25 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			
-			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`, `id_p`) VALUES (LAST_INSERT_ID())");
+			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`) VALUES (LAST_INSERT_ID())");
 	        if ( ajoutEquipe == 1) {
 	        	
 	        	
-	        	System.out.println("Equipe créée" );
+	        	System.out.println("Equipe crÃ©Ã©e" );
 	        }
 	        else{
-	        	System.out.println("Echec lors de l'ajout d'une équipe");
+	        	System.out.println("Echec lors de l'ajout d'une Ã©quipe");
 	        }
 		}
 		catch(Exception e)
 		{
-			 System.out.println( "Erreur création de l'équipe : " + e.getMessage() );
+			 System.out.println( "Erreur crÃ©ation de l'Ã©quipe : " + e.getMessage() );
 		} 
 		
 	}
 
 	
-	public void AjouterCompetition(String NomCompet,java.util.Date dateCompet,boolean enEquipe)
+	public void AjouterCompetition(String NomCompet,LocalDate dateCompet,boolean enEquipe)
 	{
 		try
 		{
@@ -147,10 +147,10 @@ public class Connexion {
 	        if ( ajoutCompet == 1) {
 	        	
 	        	
-	        	System.out.println("Compétition créée" );
+	        	System.out.println("CompÃ©tition crÃ©Ã©e" );
 	        }
 	        else{
-	        	System.out.println("La compétition n'a pas été créée");
+	        	System.out.println("La compÃ©tition n'a pas Ã©tÃ© crÃ©Ã©e");
 	        }
 		}
 		catch(Exception e)
@@ -171,7 +171,7 @@ public class Connexion {
 		        	int ModifCand = statement.executeUpdate( "UPDATE candidat SET nom_c = '"+ nouveauNom +"' WHERE nom_c='"+ ancienNom +"'" );
 		        	if(ModifCand == 1)
 		        	{
-		        		System.out.println("Modification du nom de la personne réussi" );
+		        		System.out.println("Modification du nom de la personne rÃ©ussi" );
 		        	}
 		        	else{
 			        	System.out.println("Echec lors de la modification" );
@@ -197,7 +197,7 @@ public class Connexion {
 			 
 		        if(ModifPers == 1)
 		        {
-		        	System.out.println("Modification du prénom de la personne réussi " );
+		        	System.out.println("Modification du prÃ©nom de la personne rÃ©ussi " );
 		        }
 		        else{
 		        	System.out.println("Echec lors de la modification" );
@@ -223,7 +223,7 @@ public class Connexion {
 		        if(ModifPers == 1)
 		        {
 		        	
-		        		System.out.println("Modification du mail de la personne réussi" );
+		        		System.out.println("Modification du mail de la personne rÃ©ussi" );
 		        	
 		        }
 		        else{
@@ -249,7 +249,7 @@ public class Connexion {
 		        	int ModifCand = statement.executeUpdate( "UPDATE competition SET nom_comp = '"+ nouveauNom +"' WHERE nom_comp='"+ ancienNom +"'" );
 		        	if(ModifCand == 1)
 		        	{
-		        		System.out.println("Le nom de la compet a été mis à jour" );
+		        		System.out.println("Le nom de la compet a Ã©tÃ© mis Ã  jour" );
 		        	}
 		        	else{
 			        	System.out.println("Echec lors de la modification" );
@@ -276,7 +276,7 @@ public class Connexion {
 		    int ModifCand = statement.executeUpdate( "UPDATE candidat SET nom_c = '"+ nouveauNom +"' WHERE nom_c='"+ ancienNom +"'" );
 		    if(ModifCand == 1)
 		    {
-		        System.out.println("Modification du nom de l'équipe réussi" );
+		        System.out.println("Modification du nom de l'Ã©quipe rÃ©ussi" );
 		    }
 		    else{
 	        	System.out.println("Echec lors de la modification" );
@@ -300,7 +300,7 @@ public class Connexion {
 		        System.out.println( "Affichage des candidats" );
 		        
 		        if(ModifDate == 1){
-		        	System.out.println("Modification de la date de cloture réussi" );
+		        	System.out.println("Modification de la date de cloture rÃ©ussi" );
 		        }
 		        else{
 		        	System.out.println("Echec lors de la modification" );
@@ -385,7 +385,7 @@ public class Connexion {
 				int supprEquipe = statement.executeUpdate("DELETE FROM composer_equipe WHERE id_equipe = "+ id +"");
 				if(supprEquipe == 1)
 				{
-					System.out.println("Equipe supprimée" );
+					System.out.println("Equipe supprimÃ©e" );
 				}
 				else{
 		        	System.out.println("Echec lors de la suppression" );
@@ -396,7 +396,7 @@ public class Connexion {
 				int supprPers = statement.executeUpdate("DELETE FROM personne WHERE id_p ="+id+"");
 				if(supprPers == 1)
 				{
-					System.out.println("Suppression de la personne réussi" );
+					System.out.println("Suppression de la personne rÃ©ussi" );
 				}
 				else{
 		        	System.out.println("Echec lors de la suppression" );
@@ -425,7 +425,7 @@ public class Connexion {
 				 while(VerifNomCompet.next())
 			     {
 					 
-					 System.out.println("Le candidat n°"+idCand+" est deja inscrit a la competition n°"+idCompet+" - "+ VerifNomCompet.getString("compet_nom") );
+					 System.out.println("Le candidat nÂ°"+idCand+" est deja inscrit a la competition nÂ°"+idCompet+" - "+ VerifNomCompet.getString("compet_nom") );
 			     }
 
 			}
@@ -441,7 +441,7 @@ public class Connexion {
 						int insertCandCompet = statement.executeUpdate( "INSERT INTO participer (id_c,id_comp) VALUES ("+idCand+","+idCompet+")");
 						if(insertCandCompet == 1)
 						{
-							System.out.println("Vous vous etes bien inscris a la competition n°"+idCompet+"");
+							System.out.println("Vous vous etes bien inscris a la competition nÂ°"+idCompet+"");
 						}
 						else
 						{
@@ -450,7 +450,7 @@ public class Connexion {
 					}
 					else
 					{
-						System.out.println("Vous ne pouvez pas vous inscrire car cette competition se déroule en solo");
+						System.out.println("Vous ne pouvez pas vous inscrire car cette competition se dÃ©roule en solo");
 					}
 				}
 				else
@@ -463,7 +463,7 @@ public class Connexion {
 						int insertCandCompet = statement.executeUpdate( "INSERT INTO participer (id_c,id_comp) VALUES ("+idCand+","+idCompet+")");
 						if(insertCandCompet == 1)
 						{
-							System.out.println("Vous vous etes bien inscrit pour participer a la competition n°"+idCompet+"");
+							System.out.println("Vous vous etes bien inscrit pour participer a la competition nÂ°"+idCompet+"");
 						}
 						else
 						{
@@ -509,11 +509,11 @@ public class Connexion {
 						
 					if(insertPersEquipe == 1)
 					{
-						System.out.println("Vous vous êtes bien inscrit dans l'equipe n°"+idEquipe+"");
+						System.out.println("Vous vous Ãªtes bien inscrit dans l'equipe nÂ°"+idEquipe+"");
 					}
 					else
 					{
-				        System.out.println("L'inscription a échoué" );
+				        System.out.println("L'inscription a Ã©chouÃ©" );
 				    }
 				}
 				else
@@ -574,7 +574,7 @@ public class Connexion {
 		        	System.out.println("La suppression a bien ete prise en compte" );
 		        }
 		        else{
-		        	System.out.println("La suppression n'a pas été prise en compte" );
+		        	System.out.println("La suppression n'a pas Ã©tÃ© prise en compte" );
 		        }
 		}
 		catch(Exception e)
