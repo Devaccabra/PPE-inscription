@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.TreeSet;
 
+import database.Connexion;
+
 /**
  * Représente une personne physique pouvant s'inscrire à une compétition.
  */
@@ -74,6 +76,7 @@ public class Personne extends Candidat
 	
 	boolean add(Equipe equipe)
 	{
+		Connexion.AjouterEquipe(equipe,this);
 		return equipes.add(equipe);
 	}
 

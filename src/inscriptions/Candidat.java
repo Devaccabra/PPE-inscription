@@ -16,6 +16,7 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 	private Inscriptions inscriptions;
 	private String nom;
 	private Set<Competition> competitions;//???????????
+	private int id_c;
 	
 	Candidat(Inscriptions inscriptions, String nom)
 	{
@@ -23,11 +24,23 @@ public abstract class Candidat implements Comparable<Candidat>, Serializable
 		this.nom = nom;
 		competitions = new TreeSet<>();
 	}
+	
+	Candidat(Inscriptions inscriptions, String nom,int id_c)
+	{
+		this.inscriptions = inscriptions;	
+		this.nom = nom;
+		this.id_c = id_c;
+		competitions = new TreeSet<>();
+	}
 
 	/**
 	 * Retourne le nom du candidat.
 	 * @return
 	 */
+	public int getId()
+	{
+		return id_c;
+	}
 	
 	public String getNom()
 	{

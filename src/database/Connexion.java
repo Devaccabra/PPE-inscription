@@ -11,7 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import inscriptions.Competition;
+import inscriptions.Equipe;
 import inscriptions.Inscriptions;
+import inscriptions.Personne;
 
 public class Connexion {
 	
@@ -62,9 +64,7 @@ public class Connexion {
 			Statement statement = null ;
 			
 			statement = connexion.createStatement();
-			String r = "INSERT INTO `candidat`(`id_c`,`nom_c`) VALUES (LAST_INSERT_ID(), '"+nom+"') ";
-			System.out.println(r);
-			int ajoutCand = statement.executeUpdate( r);
+			System.out.println("Ajout du candidat en cours");int ajoutCand = statement.executeUpdate ("INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"') ");
 			if(ajoutCand == 1)
 			{
 				System.out.println( "Ajout du candidat réussi");
@@ -88,7 +88,7 @@ public class Connexion {
 		{
 			Statement statement = null ;
 			statement = connexion.createStatement();
-			int ajoutPers = statement.executeUpdate( "INSERT INTO `personne`(`id_p`, `prenom`, `mail`) VALUES (LAST_INSERT_ID(),'"+prenom+"' ,'"+mail+"')");
+			System.out.println("ajout de la personne en cours");int ajoutPers = statement.executeUpdate( "INSERT INTO `personne`(`prenom`, `mail`) VALUES ('"+prenom+"' ,'"+mail+"')");
 			if ( ajoutPers == 1) {
 	        	
 	        	
@@ -107,17 +107,16 @@ public class Connexion {
 	}
 	
 	
-	public static void AjouterEquipe(String Nom)
+	public static void AjouterEquipe(Equipe equipe, Personne personne)
 	{
 		try
 		{
-			ajouterCandidat(Nom);
 			
 			Statement statement = null ;
 			
 			statement = connexion.createStatement();
 			
-			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES (LAST_INSERT_ID(),LAST_INSERT_ID())");
+			System.out.println("Ajout de l'équipe en cours");int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES ('"+equipe.getId()+"', '"+personne.getId()+"')");
 	        if ( ajoutEquipe == 1) {
 	        	
 	        	
@@ -144,7 +143,7 @@ public class Connexion {
 			
 
 			statement = connexion.createStatement();
-			int ajoutCompet = statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")");
+			System.out.println("ajout de la compétition en cours");int ajoutCompet = statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")");
 			
 	        if ( ajoutCompet == 1) {
 	        	

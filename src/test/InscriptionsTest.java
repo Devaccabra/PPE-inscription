@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.junit.Test;
@@ -9,8 +11,8 @@ import inscriptions.*;
 public class InscriptionsTest {
 
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
-	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", null, true);
-	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
+	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest",  LocalDate.of(2017, 01, 01), true);
+	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest",  LocalDate.of(2018, 01, 01), false);
 	Equipe equipeTest = inscriptionTest.createEquipe("EquipeTest");
 	Personne personneTest = inscriptionTest.createPersonne("TEST", "test", "tTEST@gmail.com");
 	
@@ -29,7 +31,7 @@ public class InscriptionsTest {
 
 	@Test
 	public void testCreateCompetition() {
-		Competition competitionTest2 = inscriptionTest.createCompetition("Test", null, false);
+		Competition competitionTest2 = inscriptionTest.createCompetition("Test",  LocalDate.of(2017, 01, 01), false);
 		Set <Competition> setCompetitionTest = inscriptionTest.getCompetitions();
 		assertTrue(setCompetitionTest.contains(competitionTest2));
 	}

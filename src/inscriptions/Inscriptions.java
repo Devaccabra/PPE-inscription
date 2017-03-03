@@ -130,7 +130,6 @@ public class Inscriptions implements Serializable
 	
 	public Equipe createEquipe(String nom)
 	{
-		getConnexion().AjouterEquipe(nom);
 		Equipe equipe = new Equipe(this, nom);
 		candidats.add(equipe);
 		return equipe;
