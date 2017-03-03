@@ -14,7 +14,7 @@ public class CompetitionTest {
 	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", LocalDate.of(2018, 01, 01), true);
 	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", LocalDate.of(2017, 01, 01), false);
 	Personne personneTest = inscriptionTest.createPersonne ("TEST", "test", "tTEST@gmail.com");
-	Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+	Equipe equipeTest = inscriptionTest.createEquipe("L\'EQUIPE TEST");
 
 	@Test
 	public void testGetNom() {

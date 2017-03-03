@@ -10,14 +10,14 @@ import java.util.Set;
 
 public class CandidatTest {
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
-	Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+	Equipe equipeTest = inscriptionTest.createEquipe("EQUIPE TEST");
 	Personne personneTest = inscriptionTest.createPersonne("TEST", "test","tTEST@gmail.com");
 	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
 	
 	
 	@Test
 	public void testGetNom() {
-		assertTrue(equipeTest.getNom() == "L'EQUIPE TEST" && personneTest.getNom() == "TEST");
+		assertTrue(equipeTest.getNom() == "EQUIPE TEST" && personneTest.getNom() == "TEST");
 	}
 
 	@Test

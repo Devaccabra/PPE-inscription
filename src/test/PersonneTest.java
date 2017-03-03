@@ -15,7 +15,7 @@ public class PersonneTest {
 	
 	@Test
 	public void testDelete() {
-		Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+		Equipe equipeTest = inscriptionTest.createEquipe("L\'EQUIPE TEST");
 		equipeTest.add(personneTest);
 		Set<Equipe> setEquipesTest = personneTest.getEquipes();
 		personneTest.delete();
@@ -46,7 +46,7 @@ public class PersonneTest {
 
 	@Test
 	public void testGetEquipes() {
-		Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+		Equipe equipeTest = inscriptionTest.createEquipe("L\'EQUIPE TEST");
 		equipeTest.add(personneTest);
 		Set<Equipe> setEquipesTest = personneTest.getEquipes();
 		assertTrue(setEquipesTest.contains(equipeTest));

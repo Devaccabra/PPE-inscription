@@ -10,7 +10,7 @@ import inscriptions.*;
 
 public class EquipeTest {
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
-	Equipe equipeTest = inscriptionTest.createEquipe("L'EQUIPE TEST");
+	Equipe equipeTest = inscriptionTest.createEquipe("L\'EQUIPE TEST");
 	Personne personneTest = inscriptionTest.createPersonne("TEST", "test","tTEST@gmail.com");
 
 	@Test

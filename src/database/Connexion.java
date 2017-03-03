@@ -62,7 +62,9 @@ public class Connexion {
 			Statement statement = null ;
 			
 			statement = connexion.createStatement();
-			int ajoutCand = statement.executeUpdate( "INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"') ");
+			String r = "INSERT INTO `candidat`(`id_c`,`nom_c`) VALUES (LAST_INSERT_ID(), '"+nom+"') ";
+			System.out.println(r);
+			int ajoutCand = statement.executeUpdate( r);
 			if(ajoutCand == 1)
 			{
 				System.out.println( "Ajout du candidat réussi");
@@ -115,7 +117,7 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			
-			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`) VALUES (LAST_INSERT_ID())");
+			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES (LAST_INSERT_ID(),LAST_INSERT_ID())");
 	        if ( ajoutEquipe == 1) {
 	        	
 	        	
