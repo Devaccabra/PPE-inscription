@@ -81,7 +81,7 @@ public class Connexion {
 		} 
 	}
 	
-	public static void AjouterPersonne(String nom, String prenom, String mail)
+	public void AjouterPersonne(String nom, String prenom, String mail)
 	{
 		
 		try
