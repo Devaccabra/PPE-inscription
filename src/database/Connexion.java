@@ -639,16 +639,14 @@ public class Connexion {
 	
 	public void AjouterCompetition(String NomCompet,LocalDate dateCompet,boolean enEquipe)
 	{
+		System.out.println(dateCompet + NomCompet);
 		try
 		{
 			Statement statement = null ;
 			
-			
-
 			statement = connexion.createStatement();
-			System.out.println("ajout de la compétition en cours");int ajoutCompet = statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")");
 			
-	        if ( ajoutCompet == 1) {
+	        if ( statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")") == 1) {
 	        	
 	        	
 	        	System.out.println("Compétition créée" );

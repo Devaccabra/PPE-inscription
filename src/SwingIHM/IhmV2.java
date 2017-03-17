@@ -2096,7 +2096,7 @@ public class IhmV2 {
 
 	private Component getlblPersonneDansUne()
 	{
-		JLabel lblPersonneDansUne = new JLabel("Personne inscrite dans une compétition");
+		JLabel lblPersonneDansUne = new JLabel("Personne dans une compétition");
 		lblPersonneDansUne.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPersonneDansUne.setBounds(232, 217, 225, 14);
 		return lblPersonneDansUne;
