@@ -57,6 +57,509 @@ public class Connexion {
 	}
 	
 	
+	public static HashMap<String, Integer>  AfficherLesCandidats()
+	{
+		HashMap<String, Integer> maliste = new LinkedHashMap<String, Integer>();
+		//utilisation d'une hashMap car elle est tri�e par ordre d'insertion dans la bdd
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from candidat,equipe where id_equipe = id_c" );
+			
+			
+	       while (resultat.next()) 
+	       {
+	    	   String Nom = resultat.getString("nom_c");
+	        	int idCandidat = resultat.getInt("id_c");
+		       
+		        maliste.put(Nom, idCandidat);
+		        System.out.println( "bonjour test !");
+	       }     
+		}
+		catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de l'affichage de la liste des candidats : "
+		                + e.getMessage() );
+		}
+		return maliste;
+	}
+	
+	
+	public static HashMap<String, Integer> AfficherCompetitions()
+	{
+		HashMap<String, Integer> malisteCompet = new LinkedHashMap<String, Integer>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			Competition compet;
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from competition" );
+        
+	        while (resultat.next()) 
+	        {
+	        	int idCompet = resultat.getInt("id_comp");
+	        	String Nom = resultat.getString("nom_comp");
+	        	malisteCompet.put(Nom, idCompet);
+	        	
+
+	        } 
+
+	        	
+	    }
+		catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malisteCompet; 
+	}
+	
+	public static HashMap<Integer, String> AfficherCompetitionsID()
+	{
+		HashMap<Integer, String> malisteCompetID = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			Competition compet;
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from competition" );
+        
+	        while ( resultat.next() ) 
+	        {
+	        	int idCompet = resultat.getInt("id_comp");
+	        	String Nom = resultat.getString("nom_comp");
+	        	malisteCompetID.put(idCompet, Nom);
+	        	
+
+	        } 
+
+	        	
+	    }
+		catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malisteCompetID; 
+	}
+	
+	public static HashMap<String, Integer> AfficherCompetitionsDate()
+	{
+		HashMap<String, Integer> malisteCompetDate = new LinkedHashMap<String, Integer>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			Competition compet;
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from competition" );
+        
+	        while ( resultat.next() ) 
+	        {
+	        	int idCompet = resultat.getInt("id_comp");
+	        	java.sql.Date Nom = resultat.getDate("date_cloture");
+	        	SimpleDateFormat formatDateJour = new SimpleDateFormat("dd/MM/yyyy"); 
+	        	String dateFormatee = formatDateJour.format(Nom);
+	        	malisteCompetDate.put(dateFormatee, idCompet);
+	        	
+
+	        } 
+
+	        	
+	    }
+		catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malisteCompetDate; 
+	}
+	
+	
+	
+	public static HashMap<String, Integer> AfficherPersonnes()
+	{
+		HashMap<String, Integer> malistePers = new LinkedHashMap<String, Integer>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from candidat, personne where id_c = id_p" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPers = resultat.getInt("id_c");
+			        	malistePers.put(Nom, idPers);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePers;
+		
+		
+		
+	    
+	}
+	
+	public static HashMap<Integer, String> AfficherPersonnesEquipe()
+	{
+		HashMap<Integer, String> malistePersEquipe = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * from equipe,personne,personne_has_equipe where id_personne = Personne_id_personne and Equipe_id_equipe = id_equipe" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("pers_prenom");
+			        	int idPersEquipe = resultat.getInt("Equipe_id_equipe");
+			        	malistePersEquipe.put(idPersEquipe, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersEquipe;
+		
+		
+		
+	    
+	}
+	
+	public static HashMap<Integer, String> AfficherPersonnesHasEquipeID()
+	{
+		HashMap<Integer, String> malistePersEquipe = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * from equipe,personne,personne_has_equipe where id_personne = Personne_id_personne and Equipe_id_equipe = id_equipe" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("pers_prenom");
+			        	int idPersEquipe = resultat.getInt("Personne_id_Personne");
+			        	malistePersEquipe.put(idPersEquipe, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersEquipe;
+		
+		
+		
+	    
+	}
+	
+	public static HashMap<Integer, String> AfficherPersonnesCompet()
+	{
+		HashMap<Integer, String> malistePersCompet = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * FROM candidat C,participer P,competition CO, personne PE WHERE P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = PE.id_p" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPersCompet = resultat.getInt("id_comp");
+			        	malistePersCompet.put(idPersCompet, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersCompet;
+		
+		
+		
+	    
+	}
+
+	public static HashMap<Integer, String> AfficherPersonnesCompetID()
+	{
+		HashMap<Integer, String> malistePersCompetID = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * from candidat C,participer P,competition CO, personne PE where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = PE.id_p" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPersCompetID = resultat.getInt("id_c");
+			        	malistePersCompetID.put(idPersCompetID, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersCompetID;
+		
+		
+		
+	    
+	}
+	
+	public static HashMap<Integer, String> AfficherEquipeCompetID()
+	{
+		HashMap<Integer, String> malistePersCompetID = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * from candidat C,participer P,competition CO, composer_equipe CE where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = id_equipe" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPersCompetID = resultat.getInt("id_c");
+			        	malistePersCompetID.put(idPersCompetID, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersCompetID;
+		
+		
+		
+	    
+	}
+	
+	public static HashMap<Integer, String> AfficherPersonnesPersonneID()
+	{
+		HashMap<Integer, String> malistePersCompet = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT * from candidat C, participer P, competition CO, equipe E where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = E.id_equipe" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPersCompet = resultat.getInt("id_comp");
+			        	malistePersCompet.put(idPersCompet, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersCompet;
+		
+		
+		
+	    
+	}
+
+	public static HashMap<Integer, String> AfficherPersonnesID()
+	{
+		HashMap<Integer, String> malistePersID = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "select * from candidat,personne where id_c = id_p order by id_c" );
+	        
+	        while ( resultat.next())
+	        {
+	        			String Nom = resultat.getString("nom_c");
+			        	int idPers = resultat.getInt("id_c");
+			        	malistePersID.put(idPers, Nom);
+			        	
+	        }
+	        
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		return malistePersID;
+		
+	}
+		
+		public static HashMap<String, Integer> AfficherPersonnesPrenom()
+		{
+			HashMap<String, Integer> malistePersPrenom = new LinkedHashMap<String, Integer>();
+			try
+			{
+				Statement statement = null;
+				ResultSet resultat = null;
+				
+				statement = connexion.createStatement();
+				resultat = statement.executeQuery( "select * from candidat,personne where id_c = id_p" );
+		        
+		        while ( resultat.next())
+		        {
+		        			String Prenom = resultat.getString("prenom");
+				        	int idPers = resultat.getInt("id_c");
+				        	malistePersPrenom.put(Prenom, idPers);
+				        	
+		        }
+		        
+			}
+		    catch(Exception e)
+			{
+				 System.out.println( "Erreur lors de la connexion : "
+			                + e.getMessage() );
+			}
+			return malistePersPrenom;
+			
+		
+	    
+	}
+		public static HashMap<String, Integer> AfficherPersonnesMail()
+		{
+			HashMap<String, Integer> malistePersMail = new LinkedHashMap<String, Integer>();
+			try
+			{
+				Statement statement = null;
+				ResultSet resultat = null;
+				
+				statement = connexion.createStatement();
+				resultat = statement.executeQuery( "select * from candidat,personne where id_c = id_p" );
+		        
+		        while ( resultat.next())
+		        {
+		        			String Prenom = resultat.getString("mail");
+				        	int idPers = resultat.getInt("id_c");
+				        	malistePersMail.put(Prenom, idPers);
+				        	
+		        }
+		        
+			}
+		    catch(Exception e)
+			{
+				 System.out.println( "Erreur lors de la connexion : "
+			                + e.getMessage() );
+			}
+			return malistePersMail;
+			
+		
+	    
+	}
+	public static HashMap<String, Integer> AfficherLesEquipes()
+	{
+		HashMap<String, Integer> maliste = new LinkedHashMap<String, Integer>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, equipe E WHERE E.id_equipe = C.id_c" );
+	       
+	        
+	        while ( resultat.next())
+	        {
+	        	int idEquipe = resultat.getInt("id_equipe");
+	        	String Nom = resultat.getString("nom_c");
+
+	        	 maliste.put(Nom, idEquipe);
+	        	
+
+
+	        }
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		
+		return maliste; 
+	    //a
+	}
+	public static HashMap<Integer, String> AfficherLesEquipesID()
+	{
+		HashMap<Integer, String> malisteEquipeID = new LinkedHashMap<Integer, String>();
+		try
+		{
+			Statement statement = null;
+			ResultSet resultat = null;
+			
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery( "SELECT cand_nom, id_equipe FROM Candidat C, Equipe E WHERE E.id_equipe = C.id_c" );
+	       
+	        
+	        while ( resultat.next())
+	        {
+	        	int idEquipe = resultat.getInt("id_equipe");
+	        	String Nom = resultat.getString("cand_nom");
+
+	        	malisteEquipeID.put(idEquipe, Nom);
+	        	
+
+
+	        }
+		}
+	    catch(Exception e)
+		{
+			 System.out.println( "Erreur lors de la connexion : "
+		                + e.getMessage() );
+		}
+		
+		return malisteEquipeID; 
+	    
+	}
+	
+	
 	public static void ajouterCandidat(String nom)
 	{
 		try
@@ -88,7 +591,7 @@ public class Connexion {
 		{
 			Statement statement = null ;
 			statement = connexion.createStatement();
-			System.out.println("ajout de la personne en cours");int ajoutPers = statement.executeUpdate( "INSERT INTO `personne`(`prenom`, `mail`) VALUES ('"+prenom+"' ,'"+mail+"')");
+			int ajoutPers = statement.executeUpdate( "INSERT INTO `personne`(`prenom`, `mail`) VALUES ('"+prenom+"' ,'"+mail+"')");
 			if ( ajoutPers == 1) {
 	        	
 	        	
@@ -116,7 +619,7 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			
-			System.out.println("Ajout de l'équipe en cours");int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES ('"+equipe.getId()+"', '"+personne.getId()+"')");
+			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES ('"+equipe.getId()+"', '"+personne.getId()+"')");
 	        if ( ajoutEquipe == 1) {
 	        	
 	        	
@@ -327,7 +830,7 @@ public class Connexion {
 												
 	        while ( resultat.next())
 	        {
-	        	id = resultat.getInt("id_cand");
+	        	id = resultat.getInt("id_c");
 	        	System.out.println(id);
 	        }
 			
@@ -354,7 +857,7 @@ public class Connexion {
 												
 	        while ( resultat.next())
 	        {
-	        	id = resultat.getInt("id_compet");
+	        	id = resultat.getInt("id_comp");
 	        	System.out.println(id);
 	        }
 			
@@ -379,7 +882,7 @@ public class Connexion {
 			statement = connexion.createStatement();
 			
 			int SupprCandidat = statement.executeUpdate( "DELETE FROM candidat WHERE id_c = "+id+"" );
-			int SupprCandidatInscr = statement.executeUpdate( "DELETE FROM `candidat_has_competition` WHERE `Candidat_id_candidat`= "+id+"");
+			int SupprCandidatInscr = statement.executeUpdate( "DELETE FROM `participer` WHERE `id_c`= "+id+"");
 			
 			if(verifCand(id) == 1)
 			{
