@@ -82,8 +82,8 @@ public class IhmV2 {
 	private JCheckBox chckbxCompetitionEnEquipe;
 	
 	List<Personne> personnes = new ArrayList<>();
-	List<Competition> competitions = new ArrayList();
-	List<Equipe> Equipe = new ArrayList();
+	List<Competition> competitions = new ArrayList<>();
+	List<Equipe> Equipe = new ArrayList<>();
 	final HashMap<String, Integer> listePers = database.Connexion.AfficherPersonnes();
 	final HashMap<String, Integer> listecandidat = database.Connexion.AfficherLesEquipes();
 	final HashMap<String, Integer> listeCompet = database.Connexion.AfficherCompetitions();
@@ -116,11 +116,11 @@ public class IhmV2 {
 	final JList ListCompetName = new JList();
 	final JList ListPersonneEquipe = new JList();
 	final JList ListPersonneCompet = new JList();
-	final JList ListPerconneCompetID = new JList();
+	final JList ListPersonneCompetID = new JList();
 	final JList ListPersonneEquipeID = new JList();
 	final JList ListCandidatIdCandidat = new JList();
 	final JList ListCompetIDCompet = new JList();
-	private JTextField txtMailPersone2;
+	private JTextField txtMailPersonne2;
 	
 	/** 
 	 * Launch the application.
@@ -152,7 +152,7 @@ public class IhmV2 {
 	
 	private void initialize() {
 		frmGestionDesComptitions = new JFrame();
-		frmGestionDesComptitions.setTitle("Gestion des compÃ©titions");
+		frmGestionDesComptitions.setTitle("Gestion des compétitions");
 		frmGestionDesComptitions.setResizable(false);
 		frmGestionDesComptitions.setBounds(100, 100, 650, 408);
 		frmGestionDesComptitions.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,135 +166,61 @@ public class IhmV2 {
 		tabbedPane.addTab("Accueil", null, panelAccueil, null);
 		panelAccueil.setLayout(null);
 		
-		JLabel lblGestionDesInscriptions = new JLabel("Gestion des Inscriptions Sportives");
-		lblGestionDesInscriptions.setForeground(Color.DARK_GRAY);
-		lblGestionDesInscriptions.setBounds(73, 29, 400, 30);
-		lblGestionDesInscriptions.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
-		panelAccueil.add(lblGestionDesInscriptions);
+		// PANEL ACCUEIL
 		
-		JLabel lblNewLabel = new JLabel("Bienvenue dans l'application \"Gestion des Inscriptions Sportives\"");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(20, 95, 480, 30);
-		panelAccueil.add(lblNewLabel);
+		panelAccueil.add(getLblGestionDesInscriptions());
 		
-		JLabel lblDansCetteApplication = new JLabel("Dans cette application vous avez accÃ¨s Ã  3 onglets :");
-		lblDansCetteApplication.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblDansCetteApplication.setBounds(20, 164, 439, 30);
-		panelAccueil.add(lblDansCetteApplication);
+		panelAccueil.add(getlblNewLabel());
 		
-		JLabel lblEquipe = new JLabel("  Il permettra de gÃ©rer les equipes pour les compÃ©titions(Ajout/Modification/Suppression)");
-		lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblEquipe.setBounds(78, 205, 470, 30);
-		panelAccueil.add(lblEquipe);
+		panelAccueil.add(getlblDansCetteApplication());
 		
-		JLabel lblCompetition = new JLabel("Il permettra de gÃ©rer les compÃ©titions (Ajout/Modification/Suppression)");
-		lblCompetition.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblCompetition.setBounds(120, 268, 470, 30);
-		panelAccueil.add(lblCompetition);
+		panelAccueil.add(getlblEquipe());
 		
-		JLabel lblPersonne = new JLabel("Il permettra de gÃ©rer les personnes pour les compÃ©titions(Ajout/Modification/Suppression)");
-		lblPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPersonne.setBounds(100, 230, 496, 46);
-		panelAccueil.add(lblPersonne);
+		panelAccueil.add(getlblCompetition());
 		
-		JLabel lblEquipe_1 = new JLabel("- Equipe :");
-		lblEquipe_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEquipe_1.setBounds(30, 213, 60, 14);
-		panelAccueil.add(lblEquipe_1);
+		panelAccueil.add(getlblPersonne());
 		
-		JLabel lblComptition = new JLabel("- CompÃ©tition :");
-		lblComptition.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblComptition.setBounds(30, 276, 100, 14);
-		panelAccueil.add(lblComptition);
+		panelAccueil.add(getlblEquipe_1());
 		
-		JLabel lblPersonne_1 = new JLabel("- Personne : ");
-		lblPersonne_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPersonne_1.setBounds(30, 246, 100, 14);
-		panelAccueil.add(lblPersonne_1);
+		panelAccueil.add(getlblComptition());
 		
-
+		panelAccueil.add(getlblPersonne_1());
+		
+		
+		// PANEL PERSONNE
+		
 		JPanel panelPersonne = new JPanel();
 		tabbedPane.addTab("Personne", null, panelPersonne, null);
 		panelPersonne.setLayout(null);
 		
+		panelPersonne.add(getlblGestionDesPersonnes());
 		
-		JLabel lblGestionDesPersonnes = new JLabel("Gestion des personnes");
-		lblGestionDesPersonnes.setFont(new Font("Trebuchet MS", Font.PLAIN, 19));
-		lblGestionDesPersonnes.setBounds(188, 5, 200, 23);
-		panelPersonne.add(lblGestionDesPersonnes);
+		panelPersonne.add(getlabel_19());
 		
-
-		JLabel label_19 = new JLabel("Pour modifier une personne");
-		label_19.setFont(new Font("Verdana", Font.BOLD, 12));
-		label_19.setBounds(10, 216, 225, 14);
-		panelPersonne.add(label_19);
+		panelPersonne.add(getlabel_22());
 		
-		JLabel label_22 = new JLabel("Pour supprimer une personne");
-		label_22.setFont(new Font("Verdana", Font.BOLD, 12));
-		label_22.setBounds(10, 157, 225, 14);
-		panelPersonne.add(label_22);
+		panelPersonne.add(getlabel_25());
 		
-		JLabel label_25 = new JLabel("Pour ajouter une personne :");
-		label_25.setFont(new Font("Verdana", Font.BOLD, 12));
-		label_25.setBounds(10, 45, 207, 14);
-		panelPersonne.add(label_25);
+		panelPersonne.add(gettxtAncienNomPersonne());
 		
-		txtAncienNomPersonne = new JTextField();
-		txtAncienNomPersonne.setText("Ancien nom");
-		txtAncienNomPersonne.setColumns(10);
-		txtAncienNomPersonne.setBounds(10, 241, 80, 20);
-		panelPersonne.add(txtAncienNomPersonne);
+		panelPersonne.add(gettxtAncienPrenom());
+		((JTextField) gettxtAncienPrenom()).setColumns(10);
 		
-
-		txtAncienPrenom = new JTextField();
-		txtAncienPrenom.setText("Ancien pr\u00E9nom");
-		txtAncienPrenom.setBounds(10, 272, 80, 20);
-		panelPersonne.add(txtAncienPrenom);
-		txtAncienPrenom.setColumns(10);
+		panelPersonne.add(gettxtAncienMail());
+		((JTextField) gettxtAncienMail()).setColumns(10);
 		
-		txtAncienMail = new JTextField();
-		txtAncienMail.setText("Ancien mail");
-		txtAncienMail.setBounds(10, 303, 80, 20);
-		panelPersonne.add(txtAncienMail);
-		txtAncienMail.setColumns(10);
+		panelPersonne.add(gettxtPrenomPersonne2());
+		((JTextField) gettxtPrenomPersonne2()).setColumns(10);
 		
-		txtPrenomPersonne2 = new JTextField();
-		txtPrenomPersonne2.setText("Nouveau pr\u00E9nom");
-		txtPrenomPersonne2.setBounds(93, 272, 91, 20);
-		panelPersonne.add(txtPrenomPersonne2);
-		txtPrenomPersonne2.setColumns(10);
+		panelPersonne.add(gettxtNomPersonne2());
 		
-
-		txtNomPersonne2 = new JTextField();
-		txtNomPersonne2.setText("Nouveau nom");
-		txtNomPersonne2.setColumns(10);
-		txtNomPersonne2.setBounds(93, 241, 91, 20);
-		panelPersonne.add(txtNomPersonne2);
+		panelPersonne.add(gettxtMailPersonne2());
 		
-		txtMailPersone2 = new JTextField();
-		txtMailPersone2.setText("Nouveau mail");
-		txtMailPersone2.setColumns(10);
-		txtMailPersone2.setBounds(93, 303, 91, 20);
-		panelPersonne.add(txtMailPersone2);
+		panelPersonne.add(gettxtMailPersonne());
 		
-		txtMailPersonne = new JTextField();
-		txtMailPersonne.setText("Mail");
-		txtMailPersonne.setColumns(10);
-		txtMailPersonne.setBounds(10, 122, 80, 20);
-		panelPersonne.add(txtMailPersonne);
+		panelPersonne.add(gettxtPrenomPersonne());
 		
-		
-		txtPrenomPersonne = new JTextField();
-		txtPrenomPersonne.setText("Prenom");
-		txtPrenomPersonne.setColumns(10);
-		txtPrenomPersonne.setBounds(10, 97, 80, 20);
-		panelPersonne.add(txtPrenomPersonne);
-		
-		txtNomPersonne = new JTextField();
-		txtNomPersonne.setText("Nom");
-		txtNomPersonne.setColumns(10);
-		txtNomPersonne.setBounds(10, 70, 80, 20);
-		panelPersonne.add(txtNomPersonne);
+		panelPersonne.add(gettxtNomPersonne());
 		ListPersonneID.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		ListPersonneID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		ListPersonneID.setBackground(Color.LIGHT_GRAY);
@@ -372,12 +298,12 @@ public class IhmV2 {
 				return malistePersonneCompet.keySet().toArray()[index];
 			}
 		});
-		ListPerconneCompetID.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListPerconneCompetID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListPerconneCompetID.setBackground(Color.LIGHT_GRAY);
-		ListPerconneCompetID.setForeground(Color.BLACK);
+		ListPersonneCompetID.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListPersonneCompetID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListPersonneCompetID.setBackground(Color.LIGHT_GRAY);
+		ListPersonneCompetID.setForeground(Color.BLACK);
 		
-		ListPerconneCompetID.setModel(new AbstractListModel() {
+		ListPersonneCompetID.setModel(new AbstractListModel() {
 			public int getSize() {
 				return malistePersonneCompetID.size();
 			}
@@ -917,75 +843,53 @@ public class IhmV2 {
 				list_1.setBounds(442, 45, 1, 1);
 				panelPersonne.add(list_1);
 				
-	
-				ListPersonnePrenom.setBounds(376, 45, 62, 168);
-				panelPersonne.add(ListPersonnePrenom);
+				
+				panelPersonne.add(getListPersonnePrenom());
 				
 	
-				ListPersonneMail.setBounds(437, 45, 122, 168);
-				panelPersonne.add(ListPersonneMail);
+				panelPersonne.add(getListPersonneMail());
 				
-				JLabel lblNewLabel_1 = new JLabel("Id");
-				lblNewLabel_1.setBounds(291, 30, 46, 14);
-				panelPersonne.add(lblNewLabel_1);
+	
+				panelPersonne.add(getlblNewLabel_1());
 				
-				JLabel lblNewLabel_2 = new JLabel("Nom");
-				lblNewLabel_2.setBounds(317, 30, 46, 14);
-				panelPersonne.add(lblNewLabel_2);
+			
+				panelPersonne.add(getlblNewLabel_2());
 				
-				JLabel lblNewLabel_3 = new JLabel("PrÃ©nom");
-				lblNewLabel_3.setBounds(376, 30, 46, 14);
-				panelPersonne.add(lblNewLabel_3);
+	
+				panelPersonne.add(getlblNewLabel_3());
 				
-				JLabel lblNewLabel_4 = new JLabel("Mail");
-				lblNewLabel_4.setBounds(437, 30, 46, 14);
-				panelPersonne.add(lblNewLabel_4);
+			
+				panelPersonne.add(getlblNewLabel_4());
 				
 
-				ListPersonneEquipe.setBounds(524, 254, 35, 95);
-				panelPersonne.add(ListPersonneEquipe);
+				panelPersonne.add(getListPersonneEquipe());
 				
 
-				ListPersonneCompet.setBounds(328, 254, 35, 95);
-				panelPersonne.add(ListPersonneCompet);
+				panelPersonne.add(getListPersonneCompet());
 				
 	
-				ListPerconneCompetID.setBounds(293, 254, 35, 95);
-				panelPersonne.add(ListPerconneCompetID);
+				panelPersonne.add(getListPersonneCompetID());
 				
 				
-				ListPersonneEquipeID.setBounds(489, 254, 35, 95);
-				panelPersonne.add(ListPersonneEquipeID);
+				panelPersonne.add(getListPersonneEquipeID());
 				
-				JLabel lblIdEquipe = new JLabel("id pers\r\n");
-				lblIdEquipe.setFont(new Font("Tahoma", Font.PLAIN, 9));
-				lblIdEquipe.setBounds(291, 241, 46, 14);
-				panelPersonne.add(lblIdEquipe);
+
+				panelPersonne.add(getlblIdEquipe());
 				
-				JLabel lblNewLabel_11 = new JLabel("id equipe");
-				lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 9));
-				lblNewLabel_11.setBounds(525, 241, 46, 14);
-				panelPersonne.add(lblNewLabel_11);
+	
+				panelPersonne.add(getlblNewLabel_11());
 				
-				JLabel label = new JLabel("id pers\r\n");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 9));
-				label.setBounds(489, 240, 46, 14);
-				panelPersonne.add(label);
+	
+				panelPersonne.add(getlabel());
 				
-				JLabel lblIdCompet_1 = new JLabel("id compet");
-				lblIdCompet_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-				lblIdCompet_1.setBounds(328, 240, 46, 14);
-				panelPersonne.add(lblIdCompet_1);
+		
+				panelPersonne.add(getlblIdCompet_1());
 				
-				JLabel lblPersonneDansUne = new JLabel("Personne incrite dans une compÃ©tition");
-				lblPersonneDansUne.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblPersonneDansUne.setBounds(232, 217, 225, 14);
-				panelPersonne.add(lblPersonneDansUne);
+			
+				panelPersonne.add(getlblPersonneDansUne());
 				
-				JLabel lblPersonneDansUne_1 = new JLabel("Personne dans une Ã©quipe\r\n");
-				lblPersonneDansUne_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblPersonneDansUne_1.setBounds(447, 229, 195, 14);
-				panelPersonne.add(lblPersonneDansUne_1);
+				
+				panelPersonne.add(getlblPersonneDansUne_1());
 				
 		
 
@@ -994,7 +898,7 @@ public class IhmV2 {
 				panelEquipe.setLayout(null);
 	
 				
-				JLabel lblGestionDesquipes = new JLabel("Gestion des Ã©quipes");
+				JLabel lblGestionDesquipes = new JLabel("Gestion des équipes");
 				JPanel panelCompetition = new JPanel();
 				
 						btnAjouterPersonne.addActionListener(new ajouterPersonne());
@@ -1002,7 +906,7 @@ public class IhmV2 {
 						btnModifNomPersonne.addActionListener(new modifierNomPersonne());
 						btnModifPrenomPersonne.addActionListener(new modifierPrenomPersonne());
 						btnModifMailPersonne.addActionListener(new modifierMailPersonne());
-						frmGestionDesComptitions.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelAccueil, tabbedPane, lblGestionDesInscriptions, panelEquipe, lblGestionDesquipes, panelPersonne, panelCompetition}));
+						frmGestionDesComptitions.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelAccueil, tabbedPane, getLblGestionDesInscriptions(), panelEquipe, lblGestionDesquipes, panelPersonne, panelCompetition}));
 		
 		
 		
@@ -1014,22 +918,22 @@ public class IhmV2 {
 
 		
 
-		JLabel lblGestionDesComptitions = new JLabel("Gestion des compÃ©titions");
+		JLabel lblGestionDesComptitions = new JLabel("Gestion des compétitions");
 		lblGestionDesComptitions.setFont(new Font("Trebuchet MS", Font.PLAIN, 19));
 		lblGestionDesComptitions.setBounds(188, 5, 226, 23);
 		panelCompetition.add(lblGestionDesComptitions);
 		
-		JLabel label_1 = new JLabel("Pour ajouter une compÃ©tition :");
+		JLabel label_1 = new JLabel("Pour ajouter une compétition :");
 		label_1.setFont(new Font("Verdana", Font.BOLD, 12));
 		label_1.setBounds(10, 45, 207, 14);
 		panelCompetition.add(label_1);
 		
-		JLabel label_8 = new JLabel("Pour supprimer une compÃ©tition");
+		JLabel label_8 = new JLabel("Pour supprimer une compétition");
 		label_8.setFont(new Font("Verdana", Font.BOLD, 12));
 		label_8.setBounds(9, 159, 225, 14);
 		panelCompetition.add(label_8);
 		
-		JLabel lblPourModifierNom = new JLabel("Pour modifier nom comp\u00E9tition");
+		JLabel lblPourModifierNom = new JLabel("Pour modifier nom compétition");
 		lblPourModifierNom.setFont(new Font("Verdana", Font.BOLD, 12));
 		lblPourModifierNom.setBounds(9, 228, 225, 14);
 		panelCompetition.add(lblPourModifierNom);
@@ -1245,58 +1149,34 @@ public class IhmV2 {
 			}
 		});
 		
-		listCompetition.setForeground(Color.BLACK);
-		listCompetition.setBackground(Color.LIGHT_GRAY);
-		listCompetition.setBounds(332, 45, 141, 295);
-		panelCompetition.add(listCompetition);
 		
-		chckbxCompetitionEnEquipe = new JCheckBox("compÃ©tition en Ã©quipe");
-		chckbxCompetitionEnEquipe.setBounds(10, 128, 131, 23);
-		panelCompetition.add(chckbxCompetitionEnEquipe);
+		panelCompetition.add(getlistCompetition());
 		
-		NomCompetSuppr = new JTextField();
-		NomCompetSuppr.setText("Nom\r\n");
-		NomCompetSuppr.setColumns(10);
-		NomCompetSuppr.setBounds(10, 190, 86, 20);
-		panelCompetition.add(NomCompetSuppr);
+		panelCompetition.add(getchckbxCompetitionEnEquipe());
 		
+		panelCompetition.add(getNomCompetSuppr());
 		
-		ListCompetID.setBounds(290, 45, 43, 295);
-		panelCompetition.add(ListCompetID);
+		panelCompetition.add(getListCompetID());
 		
-
-		txtNouveauNom = new JTextField();
-		txtNouveauNom.setText("Nouveau nom");
-		txtNouveauNom.setBounds(10, 282, 100, 20);
-		panelCompetition.add(txtNouveauNom);
+		panelCompetition.add(gettxtNouveauNom());
 		txtNouveauNom.setColumns(10);
 				
-
-		JLabel lblNewLabel_7 = new JLabel("Id");
-		lblNewLabel_7.setBounds(291, 30, 46, 14);
-		panelCompetition.add(lblNewLabel_7);
+		panelCompetition.add(getlblNewLabel_7());
 		
-		JLabel lblNewLabel_8 = new JLabel("Nom");
-		lblNewLabel_8.setBounds(332, 30, 46, 14);
-		panelCompetition.add(lblNewLabel_8);
+		panelCompetition.add(getlblNewLabel_8());
 		
 
 		
-
 
 		lblGestionDesquipes.setBounds(188, 5, 170, 23);
 		lblGestionDesquipes.setFont(new Font("Trebuchet MS", Font.PLAIN, 19));
 		panelEquipe.add(lblGestionDesquipes);
 		
-		JLabel label_2 = new JLabel("Pour supprimer une Ã©quipe :");
-		label_2.setFont(new Font("Verdana", Font.BOLD, 12));
-		label_2.setBounds(10, 108, 187, 14);
-		panelEquipe.add(label_2);
+		panelEquipe.add(getlabel_2());
 		
-		JLabel label_5 = new JLabel("Pour ajouter une Ã©quipe :");
-		label_5.setFont(new Font("Verdana", Font.BOLD, 12));
-		label_5.setBounds(10, 45, 178, 14);
-		panelEquipe.add(label_5);
+		panelEquipe.add(getlabel_5());
+		
+		
 		
 		JButton btnSupprimerEquipe = new JButton("Supprimer");
 		btnSupprimerEquipe.addMouseListener(new MouseAdapter() {
@@ -1429,22 +1309,13 @@ public class IhmV2 {
 		btnAjouterEquipe.setBounds(189, 70, 84, 20);
 		panelEquipe.add(btnAjouterEquipe);
 		
-		txtNomEquipe = new JTextField();
-		txtNomEquipe.setText("Nom");
-		txtNomEquipe.setColumns(10);
-		txtNomEquipe.setBounds(10, 70, 80, 20);
-		panelEquipe.add(txtNomEquipe);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		list.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		list.setBackground(Color.LIGHT_GRAY);
 		
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setVisibleRowCount(30);
+		panelEquipe.add(gettxtNomEquipe());
 		
 		
-	
+		panelEquipe.add(getlist());
 		
-		panelEquipe.add(list);
+		
 		ListEquipeID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		ListEquipeID.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		ListEquipeID.setBackground(Color.LIGHT_GRAY);
@@ -1612,10 +1483,8 @@ public class IhmV2 {
 							}
 						});
 						
-						JLabel lblModifierLeNom = new JLabel("Modifier le nom d'une equipe");
-						lblModifierLeNom.setFont(new Font("Verdana", Font.BOLD, 12));
-						lblModifierLeNom.setBounds(12, 180, 261, 14);
-						panelEquipe.add(lblModifierLeNom);
+						
+						panelEquipe.add(getlblModifierLeNom());
 						
 						txtAncienNomEquipe = new JTextField();
 						txtAncienNomEquipe.setText("Ancien nom");
@@ -1637,36 +1506,20 @@ public class IhmV2 {
 						panelEquipe.add(NomEquipeSuppr);
 						NomEquipeSuppr.setColumns(10);
 						
-						JLabel lblEquipeDansUne = new JLabel("Equipe inscrite dans une compÃ©tition");
-						lblEquipeDansUne.setFont(new Font("Tahoma", Font.BOLD, 11));
-						lblEquipeDansUne.setBounds(278, 197, 261, 14);
-						panelEquipe.add(lblEquipeDansUne);
+	
+						panelEquipe.add(getlblEquipeDansUne());
 						
 					
-						ListCandidatIdCandidat.setForeground(Color.BLACK);
-						ListCandidatIdCandidat.setFont(new Font("Tahoma", Font.PLAIN, 10));
-						ListCandidatIdCandidat.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-						ListCandidatIdCandidat.setBackground(Color.LIGHT_GRAY);
-						ListCandidatIdCandidat.setBounds(350, 236, 35, 95);
-						panelEquipe.add(ListCandidatIdCandidat);
+						panelEquipe.add(getListCandidatIdCandidat());
 						
 					
-						ListCompetIDCompet.setForeground(Color.BLACK);
-						ListCompetIDCompet.setFont(new Font("Tahoma", Font.PLAIN, 10));
-						ListCompetIDCompet.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-						ListCompetIDCompet.setBackground(Color.LIGHT_GRAY);
-						ListCompetIDCompet.setBounds(385, 236, 35, 95);
-						panelEquipe.add(ListCompetIDCompet);
+						panelEquipe.add(getListCompetIDCompet());
 						
-						JLabel lblIdCompet_2 = new JLabel("id Ã©quipe");
-						lblIdCompet_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
-						lblIdCompet_2.setBounds(339, 220, 46, 14);
-						panelEquipe.add(lblIdCompet_2);
 						
-						JLabel label_3 = new JLabel("id compet");
-						label_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
-						label_3.setBounds(385, 220, 46, 14);
-						panelEquipe.add(label_3);
+						panelEquipe.add(getlblIdCompet_2());
+						
+				
+						panelEquipe.add(getlabel_3());
 						
 
 
@@ -1676,32 +1529,25 @@ public class IhmV2 {
 		listCompetitionDate.setBounds(473, 45, 86, 295);
 		panelCompetition.add(listCompetitionDate);
 		
-		JLabel lblNewLabel_9 = new JLabel("Date de cloture");
-		lblNewLabel_9.setBounds(473, 30, 109, 14);
-		panelCompetition.add(lblNewLabel_9);
+		panelCompetition.add(getlblNewLabel_9());
 		
 		JPanel Inscriptions = new JPanel();
 		tabbedPane.addTab("Inscrire", null, Inscriptions, null);
 		Inscriptions.setLayout(null);
 		
-		JLabel lblInscription = new JLabel("INSCRIPTION");
-		lblInscription.setBounds(277, 5, 93, 16);
-		lblInscription.setFont(new Font("Verdana", Font.BOLD, 12));
-		Inscriptions.add(lblInscription);
+
+		Inscriptions.add(getlblInscription());
 		
 		txtIdPersonne_1 = new JTextField();
-		txtIdPersonne_1.setText("N\u00B0 personne");
+		txtIdPersonne_1.setText("N° personne");
 		txtIdPersonne_1.setBounds(10, 73, 112, 20);
 		Inscriptions.add(txtIdPersonne_1);
 		txtIdPersonne_1.setColumns(10);
 		
-		JLabel lblInscriptionDaunCandidat = new JLabel("Inscription d'une personne");
-		lblInscriptionDaunCandidat.setFont(new Font("Verdana", Font.BOLD, 11));
-		lblInscriptionDaunCandidat.setBounds(10, 32, 288, 14);
-		Inscriptions.add(lblInscriptionDaunCandidat);
+		Inscriptions.add(getlblInscriptionDaunCandidat());
 		
 		txtIdEquipe = new JTextField();
-		txtIdEquipe.setText("N\u00B0 \u00E9quipe");
+		txtIdEquipe.setText("N° équipe");
 		txtIdEquipe.setBounds(10, 104, 112, 20);
 		Inscriptions.add(txtIdEquipe);
 		txtIdEquipe.setColumns(10);
@@ -1718,36 +1564,22 @@ public class IhmV2 {
 		listCompetition.setValueIsAdjusting(true);
 		listCompetition.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
-		ListCompetName.setModel(new AbstractListModel() {
-			public int getSize() {
-				return listeCompet.size();
-			}
-			public Object getElementAt(int index) {
-				return listeCompet.keySet().toArray()[index];
-			}
-		});
 		
-//eheh
 	
 		
-		JLabel lblInscriptionDuneEquipe = new JLabel("Inscription d'une equipe ou d'une ");
-		lblInscriptionDuneEquipe.setFont(new Font("Verdana", Font.BOLD, 12));
-		lblInscriptionDuneEquipe.setBounds(10, 168, 223, 16);
-		Inscriptions.add(lblInscriptionDuneEquipe);
 		
-		JLabel lblPersonneAUne = new JLabel("personne Ã  une compÃ©tition");
-		lblPersonneAUne.setFont(new Font("Verdana", Font.BOLD, 12));
-		lblPersonneAUne.setBounds(10, 185, 189, 14);
-		Inscriptions.add(lblPersonneAUne);
+		Inscriptions.add(getlblInscriptionDuneEquipe());
+		
+		Inscriptions.add(getlblPersonneAUne());
 		
 		txtIdCandidat = new JTextField();
-		txtIdCandidat.setText("N\u00B0 candidat");
+		txtIdCandidat.setText("N° candidat");
 		txtIdCandidat.setBounds(10, 222, 112, 20);
 		Inscriptions.add(txtIdCandidat);
 		txtIdCandidat.setColumns(10);
 		
 		txtIdCompetition_1 = new JTextField();
-		txtIdCompetition_1.setText("N\u00B0 competition");
+		txtIdCompetition_1.setText("N° competition");
 		txtIdCompetition_1.setBounds(10, 253, 112, 20);
 		Inscriptions.add(txtIdCompetition_1);
 		txtIdCompetition_1.setColumns(10);
@@ -1794,19 +1626,10 @@ public class IhmV2 {
 		Inscriptions.add(btnInscriptionPersEquipe);
 		
 	
-		ListEquipeID2.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListEquipeID2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListEquipeID2.setBackground(Color.LIGHT_GRAY);
-	
-		ListEquipeID2.setBounds(388, 33, 55, 167);
-		Inscriptions.add(ListEquipeID2);
-		ListNom2.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListNom2.setBackground(Color.LIGHT_GRAY);
-		ListNom2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		Inscriptions.add(getListEquipeID2());
 		
-	
-		ListNom2.setBounds(442, 33, 93, 167);
-		Inscriptions.add(ListNom2);
+		
+		Inscriptions.add(getListNom2());
 		
 		ListNom2.setModel(new AbstractListModel() {
 			public int getSize() {
@@ -1825,88 +1648,40 @@ public class IhmV2 {
 				return malisteEquipeID.keySet().toArray()[index];
 			}
 		});
-		ListPersID.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListPersID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListPersID.setBackground(Color.LIGHT_GRAY);
+		
+		Inscriptions.add(getListPersID());
+		
+		
+		Inscriptions.add(getListPersNom());
 		
 		
 	
-		ListPersID.setBounds(243, 33, 55, 167);
-		Inscriptions.add(ListPersID);
-		ListPersNom.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListPersNom.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListPersNom.setBackground(Color.LIGHT_GRAY);
-
-		ListPersNom.setBounds(296, 33, 93, 167);
-		Inscriptions.add(ListPersNom);
-		
-		ListPersNom.setModel(new AbstractListModel() {
-			public int getSize() {
-				return listePers.size();
-			}
-			public Object getElementAt(int index) {
-				return listePers.keySet().toArray()[index];
-			}
-		});
-		
-		ListPersID.setModel(new AbstractListModel() {
-			public int getSize() {
-				return malistePersID.size();
-			}
-			public Object getElementAt(int index) {
-				return malistePersID.keySet().toArray()[index];
-			}
-		});
-		
-		JLabel lblNewLabel_10 = new JLabel(" dans une equipe");
-		lblNewLabel_10.setFont(new Font("Verdana", Font.BOLD, 11));
-		lblNewLabel_10.setBounds(10, 48, 112, 14);
-		Inscriptions.add(lblNewLabel_10);
-		
-		JLabel lblIdquipe = new JLabel("Id Ã©quipe");
-		lblIdquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblIdquipe.setBounds(394, 21, 73, 14);
-		Inscriptions.add(lblIdquipe);
-		
-		JLabel lblNomquipe = new JLabel("Nom Ã©quipe");
-		lblNomquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNomquipe.setBounds(453, 21, 72, 14);
-		Inscriptions.add(lblNomquipe);
-		
-		JLabel lblIdPersonne = new JLabel("Id personne");
-		lblIdPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblIdPersonne.setBounds(243, 21, 80, 14);
-		Inscriptions.add(lblIdPersonne);
-		
-		JLabel lblNomPersonne = new JLabel("Nom personne");
-		lblNomPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNomPersonne.setBounds(308, 21, 89, 14);
-		Inscriptions.add(lblNomPersonne);
+		Inscriptions.add(getlblNewLabel_10());
 		
 
-		ListCompetID2.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListCompetID2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListCompetID2.setBackground(Color.LIGHT_GRAY);
-		ListCompetID2.setBounds(243, 211, 55, 135);
-		Inscriptions.add(ListCompetID2);
+		Inscriptions.add(getlblIdquipe());
+		
 
-		ListCompetName.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		ListCompetName.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ListCompetName.setBackground(Color.LIGHT_GRAY);
-		ListCompetName.setBounds(297, 211, 146, 135);
-		Inscriptions.add(ListCompetName);
+		Inscriptions.add(getlblNomquipe());
+		
+		
+		Inscriptions.add(getlblIdPersonne());
+		
+		
+		Inscriptions.add(getlblNomPersonne());
+		
+		
+		Inscriptions.add(getListCompetID2());
+
+		
+		Inscriptions.add(getListCompetName());
 		
 		
 		
-		JLabel lblIdCompet = new JLabel("Id compÃ©tition\r\n");
-		lblIdCompet.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblIdCompet.setBounds(242, 198, 89, 14);
-		Inscriptions.add(lblIdCompet);
+		Inscriptions.add(getlblIdCompet());
 		
-		JLabel lblNomComptition = new JLabel("Nom CompÃ©tition");
-		lblNomComptition.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNomComptition.setBounds(323, 198, 93, 14);
-		Inscriptions.add(lblNomComptition);
+	
+		Inscriptions.add(getlblNomComptition());
 		
 		JButton btnInscriptionCandCompet = new JButton("INSCRIRE");
 		btnInscriptionCandCompet.addMouseListener(new MouseAdapter() {
@@ -1917,8 +1692,8 @@ public class IhmV2 {
 				malistePersonneCompet.clear();
 				malisteEquipeIDID.clear();
 				malisteEquipeIDIDID.clear();
-				ListPerconneCompetID.revalidate();
-				ListPerconneCompetID.repaint();
+				ListPersonneCompetID.revalidate();
+				ListPersonneCompetID.repaint();
 				ListCandidatIdCandidat.revalidate();
 				ListCandidatIdCandidat.repaint();
 				ListPersonneCompet.revalidate();
@@ -1929,7 +1704,7 @@ public class IhmV2 {
 				final HashMap<Integer, String> malistePersonneCompetID = database.Connexion.AfficherPersonnesCompetID();
 				final HashMap<Integer, String> malisteEquipeIDID = database.Connexion.AfficherEquipeCompetID();
 				final HashMap<Integer, String> malisteEquipeIDIDID = database.Connexion.AfficherPersonnesPersonneID();
-				ListPerconneCompetID.setModel(new AbstractListModel() {
+				ListPersonneCompetID.setModel(new AbstractListModel() {
 					public int getSize() {
 						return malistePersonneCompetID.size();
 					}
@@ -1965,8 +1740,8 @@ public class IhmV2 {
 					}
 					
 				});
-				ListPerconneCompetID.revalidate();
-				ListPerconneCompetID.repaint();
+				ListPersonneCompetID.revalidate();
+				ListPersonneCompetID.repaint();
 				ListCandidatIdCandidat.revalidate();
 				ListCandidatIdCandidat.repaint();
 				ListPersonneCompet.revalidate();
@@ -1989,6 +1764,623 @@ public class IhmV2 {
 		btnModifierNomEquipe.addActionListener(new modifierNomEquipe());
 	}
 	
+	
+	
+	
+	private Component getlblNomComptition()
+	{
+		JLabel lblNomComptition = new JLabel("Nom Compétition");
+		lblNomComptition.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNomComptition.setBounds(323, 198, 93, 14);
+		return lblNomComptition;
+	}
+
+	private Component getlblIdCompet()
+	{
+		JLabel lblIdCompet = new JLabel("Id compétition\r\n");
+		lblIdCompet.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblIdCompet.setBounds(242, 198, 89, 14);
+		return lblIdCompet;
+	}
+
+	private Component getListCompetName()
+	{
+		
+		ListCompetName.setModel(new AbstractListModel() {
+			public int getSize() {
+				return listeCompet.size();
+			}
+			public Object getElementAt(int index) {
+				return listeCompet.keySet().toArray()[index];
+			}
+		});
+		
+		ListCompetName.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListCompetName.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListCompetName.setBackground(Color.LIGHT_GRAY);
+		ListCompetName.setBounds(297, 211, 146, 135);
+		return ListCompetName;
+	}
+
+	private Component getListCompetID2()
+	{
+		ListCompetID2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListCompetID2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListCompetID2.setBackground(Color.LIGHT_GRAY);
+		ListCompetID2.setBounds(243, 211, 55, 135);
+		return ListCompetID2;
+	}
+
+	private Component getlblNomPersonne()
+	{
+		JLabel lblNomPersonne = new JLabel("Nom personne");
+		lblNomPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNomPersonne.setBounds(308, 21, 89, 14);
+		return lblNomPersonne;
+	}
+
+	private Component getlblIdPersonne()
+	{
+		JLabel lblIdPersonne = new JLabel("Id personne");
+		lblIdPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblIdPersonne.setBounds(243, 21, 80, 14);
+		return lblIdPersonne;
+	}
+
+	private Component getlblNomquipe()
+	{
+		JLabel lblNomquipe = new JLabel("Nom équipe");
+		lblNomquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNomquipe.setBounds(453, 21, 72, 14);
+		return lblNomquipe;
+	}
+
+	private Component getlblIdquipe()
+	{
+		JLabel lblIdquipe = new JLabel("Id équipe");
+		lblIdquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblIdquipe.setBounds(394, 21, 73, 14);
+		return lblIdquipe;
+	}
+
+	private Component getlblNewLabel_10()
+	{
+		JLabel lblNewLabel_10 = new JLabel(" dans une equipe");
+		lblNewLabel_10.setFont(new Font("Verdana", Font.BOLD, 11));
+		lblNewLabel_10.setBounds(10, 48, 112, 14);
+		return lblNewLabel_10;
+	}
+
+	private Component getListPersNom()
+	{
+		ListPersNom.setModel(new AbstractListModel() {
+			public int getSize() {
+				return listePers.size();
+			}
+			public Object getElementAt(int index) {
+				return listePers.keySet().toArray()[index];
+			}
+		});
+		
+		ListPersNom.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListPersNom.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListPersNom.setBackground(Color.LIGHT_GRAY);
+		ListPersNom.setBounds(296, 33, 93, 167);
+		return ListPersNom;
+	}
+
+	private Component getListPersID()
+	{
+		ListPersID.setModel(new AbstractListModel() {
+			public int getSize() {
+				return malistePersID.size();
+			}
+			public Object getElementAt(int index) {
+				return malistePersID.keySet().toArray()[index];
+			}
+		});
+		ListPersID.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListPersID.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListPersID.setBackground(Color.LIGHT_GRAY);	
+		ListPersID.setBounds(243, 33, 55, 167);
+		return ListPersID;
+	}
+
+	private Component getListNom2()
+	{
+		ListNom2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListNom2.setBackground(Color.LIGHT_GRAY);
+		ListNom2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+	
+		ListNom2.setBounds(442, 33, 93, 167);
+		return ListNom2;
+	}
+
+	private Component getListEquipeID2()
+	{
+		ListEquipeID2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListEquipeID2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListEquipeID2.setBackground(Color.LIGHT_GRAY);
+	
+		ListEquipeID2.setBounds(388, 33, 55, 167);
+		return ListEquipeID2;
+	}
+
+	private Component getlblPersonneAUne()
+	{
+		JLabel lblPersonneAUne = new JLabel("personne à une compétition");
+		lblPersonneAUne.setFont(new Font("Verdana", Font.BOLD, 12));
+		lblPersonneAUne.setBounds(10, 185, 189, 14);
+		return lblPersonneAUne;
+	}
+
+	private Component getlblInscriptionDuneEquipe()
+	{
+		JLabel lblInscriptionDuneEquipe = new JLabel("Inscription d'une equipe ou d'une ");
+		lblInscriptionDuneEquipe.setFont(new Font("Verdana", Font.BOLD, 12));
+		lblInscriptionDuneEquipe.setBounds(10, 168, 223, 16);
+		return lblInscriptionDuneEquipe;
+	}
+
+	private Component getlblInscriptionDaunCandidat()
+	{
+		JLabel lblInscriptionDaunCandidat = new JLabel("Inscription d'une personne");
+		lblInscriptionDaunCandidat.setFont(new Font("Verdana", Font.BOLD, 11));
+		lblInscriptionDaunCandidat.setBounds(10, 32, 288, 14);
+		return lblInscriptionDaunCandidat;
+	}
+
+	private Component getlblInscription()
+	{
+		JLabel lblInscription = new JLabel("INSCRIPTION");
+		lblInscription.setBounds(277, 5, 93, 16);
+		lblInscription.setFont(new Font("Verdana", Font.BOLD, 12));
+		return lblInscription;
+	}
+
+	private Component getlblNewLabel_9()
+	{
+		JLabel lblNewLabel_9 = new JLabel("Date de cloture");
+		lblNewLabel_9.setBounds(473, 30, 109, 14);
+		return lblNewLabel_9;
+	}
+
+	private Component getlabel_3()
+	{
+		JLabel label_3 = new JLabel("id comp");
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		label_3.setBounds(385, 220, 46, 14);
+		return label_3;
+	}
+
+	private Component getlblIdCompet_2()
+	{
+		JLabel lblIdCompet_2 = new JLabel("id équipe");
+		lblIdCompet_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblIdCompet_2.setBounds(339, 220, 46, 14);
+		return lblIdCompet_2;
+	}
+
+	private Component getListCompetIDCompet()
+	{
+		ListCompetIDCompet.setForeground(Color.BLACK);
+		ListCompetIDCompet.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListCompetIDCompet.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListCompetIDCompet.setBackground(Color.LIGHT_GRAY);
+		ListCompetIDCompet.setBounds(385, 236, 35, 95);
+		return ListCompetIDCompet;
+	}
+
+	private Component getListCandidatIdCandidat()
+	{
+		ListCandidatIdCandidat.setForeground(Color.BLACK);
+		ListCandidatIdCandidat.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		ListCandidatIdCandidat.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		ListCandidatIdCandidat.setBackground(Color.LIGHT_GRAY);
+		ListCandidatIdCandidat.setBounds(350, 236, 35, 95);
+		return ListCandidatIdCandidat;
+	}
+
+	private Component getlblEquipeDansUne()
+	{
+		JLabel lblEquipeDansUne = new JLabel("Equipe inscrite dans une compétition");
+		lblEquipeDansUne.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEquipeDansUne.setBounds(278, 197, 261, 14);
+		return lblEquipeDansUne;
+	}
+
+	private Component getlblModifierLeNom()
+	{
+		JLabel lblModifierLeNom = new JLabel("Modifier le nom d'une equipe");
+		lblModifierLeNom.setFont(new Font("Verdana", Font.BOLD, 12));
+		lblModifierLeNom.setBounds(12, 180, 261, 14);
+		return lblModifierLeNom;
+	}
+
+	private Component gettxtNomEquipe()
+	{
+		txtNomEquipe = new JTextField();
+		txtNomEquipe.setText("Nom");
+		txtNomEquipe.setColumns(10);
+		txtNomEquipe.setBounds(10, 70, 80, 20);
+		return txtNomEquipe;
+	}
+
+	private Component getlist()
+	{
+		list.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		list.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		list.setBackground(Color.LIGHT_GRAY);
+		
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setVisibleRowCount(30);
+		return list;
+	}
+
+	private Component getlabel_5()
+	{
+		JLabel label_5 = new JLabel("Pour ajouter une équipe :");
+		label_5.setFont(new Font("Verdana", Font.BOLD, 12));
+		label_5.setBounds(10, 45, 178, 14);
+		return label_5;
+	}
+
+	private Component getlabel_2()
+	{
+		JLabel label_2 = new JLabel("Pour supprimer une équipe :");
+		label_2.setFont(new Font("Verdana", Font.BOLD, 12));
+		label_2.setBounds(10, 108, 187, 14);
+		return label_2;
+	}
+
+	private Component getlblNewLabel_8()
+	{
+		JLabel lblNewLabel_8 = new JLabel("Nom");
+		lblNewLabel_8.setBounds(332, 30, 46, 14);
+		return lblNewLabel_8;
+	}
+
+	private Component getlblNewLabel_7()
+	{
+		JLabel lblNewLabel_7 = new JLabel("Id");
+		lblNewLabel_7.setBounds(291, 30, 46, 14);
+		return lblNewLabel_7;
+	}
+
+	private Component gettxtNouveauNom()
+	{
+		txtNouveauNom = new JTextField();
+		txtNouveauNom.setText("Nouveau nom");
+		txtNouveauNom.setBounds(10, 282, 100, 20);
+		return txtNouveauNom;
+	}
+
+	private Component getListCompetID()
+	{
+		ListCompetID.setBounds(290, 45, 43, 295);
+		return ListCompetID;
+	}
+
+	private Component getNomCompetSuppr()
+	{
+		NomCompetSuppr = new JTextField();
+		NomCompetSuppr.setText("Nom\r\n");
+		NomCompetSuppr.setColumns(10);
+		NomCompetSuppr.setBounds(10, 190, 86, 20);
+		return NomCompetSuppr;
+	}
+
+	private Component getchckbxCompetitionEnEquipe()
+	{
+		chckbxCompetitionEnEquipe = new JCheckBox("compétition en équipe");
+		chckbxCompetitionEnEquipe.setBounds(10, 128, 131, 23);
+		return chckbxCompetitionEnEquipe;
+	}
+
+	private Component getlistCompetition()
+	{
+		listCompetition.setForeground(Color.BLACK);
+		listCompetition.setBackground(Color.LIGHT_GRAY);
+		listCompetition.setBounds(332, 45, 141, 295);
+		return listCompetition;
+	}
+
+	private Component getlblPersonneDansUne_1()
+	{
+		JLabel lblPersonneDansUne_1 = new JLabel("Personne dans une équipe\r\n");
+		lblPersonneDansUne_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPersonneDansUne_1.setBounds(447, 229, 195, 14);
+		return lblPersonneDansUne_1;
+	}
+
+	private Component getlblPersonneDansUne()
+	{
+		JLabel lblPersonneDansUne = new JLabel("Personne inscrite dans une compétition");
+		lblPersonneDansUne.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPersonneDansUne.setBounds(232, 217, 225, 14);
+		return lblPersonneDansUne;
+	}
+
+	private Component getlblIdCompet_1()
+	{
+		JLabel lblIdCompet_1 = new JLabel("id compet");
+		lblIdCompet_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblIdCompet_1.setBounds(328, 240, 46, 14);
+		return lblIdCompet_1;
+	}
+
+	private Component getlabel()
+	{
+		JLabel label = new JLabel("id pers\r\n");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		label.setBounds(489, 240, 46, 14);
+		return label;
+	}
+
+	private Component getlblNewLabel_11()
+	{
+		JLabel lblNewLabel_11 = new JLabel("id equipe");
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblNewLabel_11.setBounds(525, 241, 46, 14);
+		return lblNewLabel_11;
+	}
+
+	private Component getlblIdEquipe()
+	{
+		JLabel lblIdEquipe = new JLabel("id pers\r\n");
+		lblIdEquipe.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblIdEquipe.setBounds(291, 241, 46, 14);
+		return lblIdEquipe;
+	}
+
+	private Component getListPersonneEquipeID()
+	{
+		ListPersonneEquipeID.setBounds(489, 254, 35, 95);
+		return ListPersonneEquipeID;
+	}
+
+	private Component getListPersonneCompetID()
+	{
+		ListPersonneCompetID.setBounds(293, 254, 35, 95);
+		return ListPersonneCompetID;
+	}
+
+	private Component getListPersonneCompet()
+	{
+		ListPersonneCompet.setBounds(328, 254, 35, 95);
+		return ListPersonneCompet;
+	}
+
+	private Component getListPersonneEquipe()
+	{
+		ListPersonneEquipe.setBounds(524, 254, 35, 95);
+		return ListPersonneEquipe;
+	}
+
+	private Component getlblNewLabel_4()
+	{
+		JLabel lblNewLabel_4 = new JLabel("Mail");
+		lblNewLabel_4.setBounds(437, 30, 46, 14);
+		return lblNewLabel_4;
+	}
+
+	private Component getlblNewLabel_3()
+	{
+		JLabel lblNewLabel_3 = new JLabel("Prénom");
+		lblNewLabel_3.setBounds(376, 30, 46, 14);
+		return lblNewLabel_3;
+	}
+
+	private Component getlblNewLabel_2()
+	{
+		JLabel lblNewLabel_2 = new JLabel("Nom");
+		lblNewLabel_2.setBounds(317, 30, 46, 14);
+		return lblNewLabel_2;
+	}
+
+	private Component getlblNewLabel_1()
+	{
+		JLabel lblNewLabel_1 = new JLabel("Id");
+		lblNewLabel_1.setBounds(291, 30, 46, 14);
+		return lblNewLabel_1;
+	}
+
+	private Component getListPersonneMail()
+	{
+		ListPersonneMail.setBounds(437, 45, 122, 168);
+		return ListPersonneMail;
+	}
+
+	private Component getListPersonnePrenom()
+	{
+		ListPersonnePrenom.setBounds(376, 45, 62, 168);
+		return ListPersonnePrenom;
+	}
+
+	private Component gettxtNomPersonne()
+	{
+		txtNomPersonne = new JTextField();
+		txtNomPersonne.setText("Nom");
+		txtNomPersonne.setColumns(10);
+		txtNomPersonne.setBounds(10, 70, 80, 20);
+		return txtNomPersonne;
+	}
+
+	private Component gettxtPrenomPersonne()
+	{
+		txtPrenomPersonne = new JTextField();
+		txtPrenomPersonne.setText("Prenom");
+		txtPrenomPersonne.setColumns(10);
+		txtPrenomPersonne.setBounds(10, 97, 80, 20);
+		return txtPrenomPersonne;
+	}
+
+	private Component gettxtMailPersonne()
+	{
+		txtMailPersonne = new JTextField();
+		txtMailPersonne.setText("Mail");
+		txtMailPersonne.setColumns(10);
+		txtMailPersonne.setBounds(10, 122, 80, 20);
+		return txtMailPersonne;
+	}
+
+	private Component gettxtMailPersonne2()
+	{
+		txtMailPersonne2 = new JTextField();
+		txtMailPersonne2.setText("Nouveau mail");
+		txtMailPersonne2.setColumns(10);
+		txtMailPersonne2.setBounds(93, 303, 91, 20);
+		return txtMailPersonne2;
+	}
+
+	private Component gettxtNomPersonne2()
+	{
+		txtNomPersonne2 = new JTextField();
+		txtNomPersonne2.setText("Nouveau nom");
+		txtNomPersonne2.setColumns(10);
+		txtNomPersonne2.setBounds(93, 241, 91, 20);
+		return txtNomPersonne2;
+	}
+
+	private Component gettxtPrenomPersonne2()
+	{
+		txtPrenomPersonne2 = new JTextField();
+		txtPrenomPersonne2.setText("Nouveau prénom");
+		txtPrenomPersonne2.setBounds(93, 272, 91, 20);
+		return txtPrenomPersonne2;
+	}
+
+	private Component gettxtAncienMail()
+	{
+		txtAncienMail = new JTextField();
+		txtAncienMail.setText("Ancien mail");
+		txtAncienMail.setBounds(10, 303, 80, 20);
+		return txtAncienMail;
+	}
+
+	private Component gettxtAncienPrenom()
+	{
+		txtAncienPrenom = new JTextField();
+		txtAncienPrenom.setText("Ancien prénom");
+		txtAncienPrenom.setBounds(10, 272, 80, 20);
+		return txtAncienPrenom;
+	}
+
+	private Component gettxtAncienNomPersonne()
+	{
+		txtAncienNomPersonne = new JTextField();
+		txtAncienNomPersonne.setText("Ancien nom");
+		txtAncienNomPersonne.setColumns(10);
+		txtAncienNomPersonne.setBounds(10, 241, 80, 20);
+		return txtAncienNomPersonne;
+	}
+
+	private Component getlabel_25()
+	{
+		JLabel label_25 = new JLabel("Pour ajouter une personne :");
+		label_25.setFont(new Font("Verdana", Font.BOLD, 12));
+		label_25.setBounds(10, 45, 207, 14);
+		return label_25;
+	}
+
+	private Component getlabel_22()
+	{
+		JLabel label_22 = new JLabel("Pour supprimer une personne");
+		label_22.setFont(new Font("Verdana", Font.BOLD, 12));
+		label_22.setBounds(10, 157, 225, 14);
+		return label_22;
+	}
+
+	private Component getlabel_19()
+	{
+		JLabel label_19 = new JLabel("Pour modifier une personne");
+		label_19.setFont(new Font("Verdana", Font.BOLD, 12));
+		label_19.setBounds(10, 216, 225, 14);
+		return label_19;
+	}
+
+	private Component getlblGestionDesPersonnes()
+	{
+		JLabel lblGestionDesPersonnes = new JLabel("Gestion des personnes");
+		lblGestionDesPersonnes.setFont(new Font("Trebuchet MS", Font.PLAIN, 19));
+		lblGestionDesPersonnes.setBounds(188, 5, 200, 23);
+		return lblGestionDesPersonnes;
+	}
+
+	private Component getlblPersonne_1()
+	{
+		JLabel lblPersonne_1 = new JLabel("- Personne : ");
+		lblPersonne_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPersonne_1.setBounds(30, 246, 100, 14);
+		return lblPersonne_1;
+	}
+
+	private Component getlblComptition()
+	{
+		JLabel lblComptition = new JLabel("- Compétition :");
+		lblComptition.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblComptition.setBounds(30, 276, 100, 14);
+		return lblComptition;
+	}
+
+	private Component getlblEquipe_1()
+	{
+		JLabel lblEquipe_1 = new JLabel("- Equipe :");
+		lblEquipe_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEquipe_1.setBounds(30, 213, 60, -14);
+		return lblEquipe_1;
+	}
+
+	private Component getlblPersonne()
+	{
+		JLabel lblPersonne = new JLabel("Il permettra de gérer les personnes pour les compétitions (Ajout/Modification/Suppression)");
+		lblPersonne.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPersonne.setBounds(100, 230, 496, 46);
+		return lblPersonne;
+	}
+
+	private Component getlblCompetition()
+	{
+		JLabel lblCompetition = new JLabel("Il permettra de gérer les compétitions (Ajout/Modification/Suppression)");
+		lblCompetition.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCompetition.setBounds(120, 268, 470, 30);
+		return lblCompetition;
+	}
+
+	private Component getlblEquipe()
+	{
+		JLabel lblEquipe = new JLabel("  Il permettra de gérer les equipes pour les compétitions (Ajout/Modification/Suppression)");
+		lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEquipe.setBounds(78, 205, 470, 30);
+		return lblEquipe;
+	}
+
+	private Component getlblDansCetteApplication()
+	{
+		JLabel lblDansCetteApplication = new JLabel("Dans cette application vous avez accès à 3 onglets :");
+		lblDansCetteApplication.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblDansCetteApplication.setBounds(20, 164, 439, 30);
+		return lblDansCetteApplication;
+	}
+
+	private Component getlblNewLabel()
+	{
+		JLabel lblNewLabel = new JLabel("Bienvenue dans l'application \"Gestion des Inscriptions Sportives\"");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(20, 95, 480, 30);
+		return lblNewLabel;
+	}
+
+	private Component getLblGestionDesInscriptions()
+	{
+		JLabel lblGestionDesInscriptions = new JLabel("Gestion des Inscriptions Sportives");
+		lblGestionDesInscriptions.setForeground(Color.DARK_GRAY);
+		lblGestionDesInscriptions.setBounds(73, 29, 400, 30);
+		lblGestionDesInscriptions.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
+		return lblGestionDesInscriptions;
+	}
+
 	protected static final Inscriptions inscription = Inscriptions.getInscriptions();
 
 	public static List<Personne> GetPersonne()
@@ -2251,7 +2643,7 @@ public class IhmV2 {
 		public class modifierMailPersonne implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				//RECUPERATION DES ID ECRITS OU SELECTIONNES PAR L'USER 
-				String nouveauMail = txtMailPersone2.getText();
+				String nouveauMail = txtMailPersonne2.getText();
 				String ancienMail = txtAncienMail.getText();
 				
 				database.Connexion.modifierMailPersonne(ancienMail, nouveauMail);

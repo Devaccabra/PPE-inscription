@@ -66,7 +66,7 @@ public class Connexion {
 			Statement statement = null;
 			ResultSet resultat = null;
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "select * from candidat,equipe where id_equipe = id_c" );
+			resultat = statement.executeQuery( "select * from candidat,composer_equipe where id_equipe = id_c" );
 			
 			
 	       while (resultat.next()) 
@@ -222,7 +222,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from equipe,personne,personne_has_equipe where id_personne = Personne_id_personne and Equipe_id_equipe = id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_personne and PA.id_equipe = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
@@ -254,12 +254,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from equipe,personne,personne_has_equipe where id_personne = Personne_id_personne and Equipe_id_equipe = id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_personne and PA.id_equipe = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
-	        			String Nom = resultat.getString("pers_prenom");
-			        	int idPersEquipe = resultat.getInt("Personne_id_Personne");
+	        			String Nom = resultat.getString("prenom");
+			        	int idPersEquipe = resultat.getInt("id_p");
 			        	malistePersEquipe.put(idPersEquipe, Nom);
 			        	
 	        }
@@ -350,7 +350,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from candidat C,participer P,competition CO, composer_equipe CE where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from candidat C,participer P,competition CO, composer_equipe E where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
@@ -382,7 +382,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from candidat C, participer P, competition CO, equipe E where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = E.id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from candidat C, participer P, competition CO, composer_equipe E where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
@@ -503,7 +503,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
 	       
 	        
 	        while ( resultat.next())
@@ -535,13 +535,13 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT cand_nom, id_equipe FROM Candidat C, Equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
 	       
 	        
 	        while ( resultat.next())
 	        {
 	        	int idEquipe = resultat.getInt("id_equipe");
-	        	String Nom = resultat.getString("cand_nom");
+	        	String Nom = resultat.getString("nom_c");
 
 	        	malisteEquipeID.put(idEquipe, Nom);
 	        	
@@ -591,8 +591,8 @@ public class Connexion {
 		{
 			Statement statement = null ;
 			statement = connexion.createStatement();
-			int ajoutPers = statement.executeUpdate( "INSERT INTO `personne`(`prenom`, `mail`) VALUES ('"+prenom+"' ,'"+mail+"')");
-			if ( ajoutPers == 1) {
+			int ajoutCand = statement.executeUpdate ("INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"') ");
+			if (statement.executeUpdate( "INSERT INTO `personne`(`id_p`, `nom`, `prenom`, `mail`) VALUES (LAST_INSERT_ID(), '"+nom+"', '"+prenom+"' ,'"+mail+"')") == 1) {
 	        	
 	        	
 	        	System.out.println("Ajout de la personne réussi" );
@@ -1045,7 +1045,7 @@ public class Connexion {
 			statement = connexion.createStatement();
 			
 			
-			verifPers = statement.executeQuery( "SELECT * FROM equipe" );
+			verifPers = statement.executeQuery( "SELECT * FROM " );
 			  while( verifPers.next())
 		        {
 				  if(idCand == verifPers.getInt("id_equipe"))
