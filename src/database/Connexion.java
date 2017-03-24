@@ -222,7 +222,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_personne and PA.id_equipe = E.id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
@@ -254,7 +254,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_personne and PA.id_equipe = E.id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
 	        
 	        while ( resultat.next())
 	        {
