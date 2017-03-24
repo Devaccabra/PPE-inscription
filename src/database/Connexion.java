@@ -66,7 +66,7 @@ public class Connexion {
 			Statement statement = null;
 			ResultSet resultat = null;
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "select * from candidat,composer_equipe where id_equipe = id_c" );
+			resultat = statement.executeQuery( "select * from candidat" );
 			
 			
 	       while (resultat.next()) 
@@ -503,12 +503,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "select * from candidat where NOT EXISTS (select * from personne WHERE candidat.id_c = personne.id_p)" );
 	       
 	        
 	        while ( resultat.next())
 	        {
-	        	int idEquipe = resultat.getInt("id_equipe");
+	        	int idEquipe = resultat.getInt("id_c");
 	        	String Nom = resultat.getString("nom_c");
 
 	        	 maliste.put(Nom, idEquipe);
@@ -535,12 +535,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "select * from candidat where NOT EXISTS (select * from personne WHERE candidat.id_c = personne.id_p)" );
 	       
 	        
 	        while ( resultat.next())
 	        {
-	        	int idEquipe = resultat.getInt("id_equipe");
+	        	int idEquipe = resultat.getInt("id_c");
 	        	String Nom = resultat.getString("nom_c");
 
 	        	malisteEquipeID.put(idEquipe, Nom);
@@ -1070,9 +1070,10 @@ public class Connexion {
 				int id = recupIDCompet(NomCompet);
 				statement = connexion.createStatement();
 
+				int SupprCandidatComp = statement.executeUpdate( "DELETE FROM participer WHERE id_comp = "+ id  +"" );
 				int SupprCompet = statement.executeUpdate( "DELETE FROM competition WHERE id_comp = "+ id  +"" );
 
-		        if(SupprCompet == 1){
+		        if(SupprCompet == 1 && SupprCandidatComp == 1){
 		        	System.out.println("La suppression a bien ete prise en compte" );
 		        }
 		        else{
