@@ -592,7 +592,7 @@ public class Connexion {
 			Statement statement = null ;
 			statement = connexion.createStatement();
 			int ajoutCand = statement.executeUpdate ("INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"') ");
-			if (statement.executeUpdate( "INSERT INTO `personne`(`id_p`, `nom`, `prenom`, `mail`) VALUES (LAST_INSERT_ID(), '"+nom+"', '"+prenom+"' ,'"+mail+"')") == 1) {
+			if (statement.executeUpdate( "INSERT INTO `personne`(`id_p`, `prenom`, `mail`) VALUES (LAST_INSERT_ID(), '"+prenom+"' ,'"+mail+"')") == 1) {
 	        	
 	        	
 	        	System.out.println("Ajout de la personne réussi" );
