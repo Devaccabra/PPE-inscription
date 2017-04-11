@@ -222,12 +222,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E, personne P where E.id_p IN (SELECT id_p FROM personne)" );
 	        
 	        while ( resultat.next())
 	        {
-	        			String Nom = resultat.getString("pers_prenom");
-			        	int idPersEquipe = resultat.getInt("Equipe_id_equipe");
+	        			String Nom = resultat.getString("prenom");
+			        	int idPersEquipe = resultat.getInt("id_equipe");
 			        	malistePersEquipe.put(idPersEquipe, Nom);
 			        	
 	        }
@@ -254,7 +254,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
+			resultat = statement.executeQuery( "SELECT * from personne where id_p IN (SELECT id_p FROM composer_equipe)" );
 	        
 	        while ( resultat.next())
 	        {
