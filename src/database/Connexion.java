@@ -223,11 +223,8 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-<<<<<<< HEAD
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c" );
-=======
 			resultat = statement.executeQuery( "SELECT * from composer_equipe E, personne P where E.id_p IN (SELECT id_p FROM personne)" );
->>>>>>> branch 'master' of https://github.com/Jewbaccabra/PPE-inscription
+
 	        
 	        while ( resultat.next())
 	        {
@@ -259,11 +256,7 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-<<<<<<< HEAD
-			resultat = statement.executeQuery( "SELECT * FROM personne P, composer_equipe CE WHERE P.id_p = CE.id_p" );
-=======
 			resultat = statement.executeQuery( "SELECT * from personne where id_p IN (SELECT id_p FROM composer_equipe)" );
->>>>>>> branch 'master' of https://github.com/Jewbaccabra/PPE-inscription
 	        
 	        while ( resultat.next())
 	        {

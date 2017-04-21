@@ -16,9 +16,9 @@ import java.util.TreeSet;
 import database.Connexion;
 
 /**
- * Point d'entrÃ©e dans l'application, un seul objet de type Inscription
- * permet de gÃ©rer les compÃ©titions, candidats (de type equipe ou personne)
- * ainsi que d'inscrire des candidats Ã  des compÃ©tition.
+ * Point d'entrée dans l'application, un seul objet de type Inscription
+ * permet de gérer les compétitions, candidats (de type equipe ou personne)
+ * ainsi que d'inscrire des candidats Ã  des compétition.
  */
 
 public class Inscriptions implements Serializable
@@ -37,7 +37,7 @@ public class Inscriptions implements Serializable
 	}
 	
 	/**
-	 * Retourne les compÃ©titions.
+	 * Retourne les compétitions.
 	 * @return
 	 */
 	/*public static boolean getInitBdd()
@@ -61,7 +61,7 @@ public class Inscriptions implements Serializable
 	}
 	
 	/**
-	 * Retourne tous les candidats (personnes et Ã©quipes confondues).
+	 * Retourne tous les candidats (personnes et équipes confondues).
 	 * @return
 	 */
 	
@@ -71,7 +71,7 @@ public class Inscriptions implements Serializable
 	}
 
 	/**
-	 * CrÃ©Ã©e une compÃ©tition. Ceci est le seul moyen, il n'y a pas
+	 * Créée une compétition. Ceci est le seul moyen, il n'y a pas
 	 * de constructeur public dans {@link Competition}.
 	 * @param nom
 	 * @param dateCompet
@@ -97,7 +97,7 @@ public class Inscriptions implements Serializable
 	}
 
 	/**
-	 * CrÃ©Ã©e une Candidat de type Personne. Ceci est le seul moyen, il n'y a pas
+	 * Créée une Candidat de type Personne. Ceci est le seul moyen, il n'y a pas
 	 * de constructeur public dans {@link Personne}.
 
 	 * @param nom
