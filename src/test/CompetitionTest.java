@@ -11,8 +11,8 @@ import inscriptions.*;
 public class CompetitionTest {
 	
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
-	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", LocalDate.of(2018, 01, 01), true);
-	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", LocalDate.of(2017, 01, 01), false);
+	Competition competitionEquipeTest = inscriptionTest.createCompetition("CompetEquipeTest", null, true);
+	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
 	Personne personneTest = inscriptionTest.createPersonne ("TEST", "test", "tTEST@gmail.com");
 	Equipe equipeTest = inscriptionTest.createEquipe("EQUIPE TEST");
 
@@ -34,10 +34,10 @@ public class CompetitionTest {
 	@Test(expected = inscriptions.DateInvalide.class)
 	public void testSetDateCloture() {
 		
-		competitionEquipeTest.setDateCloture(LocalDate.of(2017, 02, 11));
+		competitionEquipeTest.setDateCloture(null);
   		assertEquals(LocalDate.of(2018, 01, 01), competitionEquipeTest.getDateCloture());
   		
-		competitionEquipeTest.setDateCloture(LocalDate.of(2018, 02, 11));
+		competitionEquipeTest.setDateCloture(null);
   		assertEquals(LocalDate.of(2018, 02, 11), competitionEquipeTest.getDateCloture());
 	}
 	
@@ -90,7 +90,7 @@ public class CompetitionTest {
 
 	@Test
 	public void testCompareTo() {
-		Competition competitionEquipeTest2 = inscriptionTest.createCompetition("CompetEquipeTest",  LocalDate.of(2017, 01, 01), true);
+		Competition competitionEquipeTest2 = inscriptionTest.createCompetition("CompetEquipeTest",  null, true);
 		assertTrue(competitionEquipeTest.compareTo(competitionEquipeTest2)== 0);
 		
 	}

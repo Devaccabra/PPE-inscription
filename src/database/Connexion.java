@@ -3,6 +3,7 @@ package database;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class Connexion {
 			Statement statement = null;
 			ResultSet resultat = null;
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "select * from candidat,composer_equipe where id_equipe = id_c" );
+			resultat = statement.executeQuery( "select * from candidat" );
 			
 			
 	       while (resultat.next()) 
@@ -222,12 +223,16 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
+<<<<<<< HEAD
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c" );
+=======
+			resultat = statement.executeQuery( "SELECT * from composer_equipe E, personne P where E.id_p IN (SELECT id_p FROM personne)" );
+>>>>>>> branch 'master' of https://github.com/Jewbaccabra/PPE-inscription
 	        
 	        while ( resultat.next())
 	        {
-	        			String Nom = resultat.getString("pers_prenom");
-			        	int idPersEquipe = resultat.getInt("Equipe_id_equipe");
+	        			String Nom = resultat.getString("prenom");
+			        	int idPersEquipe = resultat.getInt("id_equipe");
 			        	malistePersEquipe.put(idPersEquipe, Nom);
 			        	
 	        }
@@ -254,7 +259,11 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from composer_equipe E,personne P,participer PA where P.id_p = PA.id_c and PA.id_c = E.id_equipe" );
+<<<<<<< HEAD
+			resultat = statement.executeQuery( "SELECT * FROM personne P, composer_equipe CE WHERE P.id_p = CE.id_p" );
+=======
+			resultat = statement.executeQuery( "SELECT * from personne where id_p IN (SELECT id_p FROM composer_equipe)" );
+>>>>>>> branch 'master' of https://github.com/Jewbaccabra/PPE-inscription
 	        
 	        while ( resultat.next())
 	        {
@@ -318,12 +327,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT * from candidat C,participer P,competition CO, personne PE where P.id_c = C.id_c and P.id_comp = CO.id_comp and C.id_c = PE.id_p" );
+			resultat = statement.executeQuery( "SELECT * from participer P, personne PE, competition C WHERE P.id_c = PE.id_p AND P.id_comp = C.id_comp" );
 	        
 	        while ( resultat.next())
 	        {
 	        			String Nom = resultat.getString("nom_c");
-			        	int idPersCompetID = resultat.getInt("id_c");
+			        	int idPersCompetID = resultat.getInt("id_p");
 			        	malistePersCompetID.put(idPersCompetID, Nom);
 			        	
 	        }
@@ -503,12 +512,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "select * from candidat where NOT EXISTS (select * from personne WHERE candidat.id_c = personne.id_p)" );
 	       
 	        
 	        while ( resultat.next())
 	        {
-	        	int idEquipe = resultat.getInt("id_equipe");
+	        	int idEquipe = resultat.getInt("id_c");
 	        	String Nom = resultat.getString("nom_c");
 
 	        	 maliste.put(Nom, idEquipe);
@@ -535,12 +544,12 @@ public class Connexion {
 			ResultSet resultat = null;
 			
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery( "SELECT nom_c, id_equipe FROM candidat C, composer_equipe E WHERE E.id_equipe = C.id_c" );
+			resultat = statement.executeQuery( "select * from candidat where NOT EXISTS (select * from personne WHERE candidat.id_c = personne.id_p)" );
 	       
 	        
 	        while ( resultat.next())
 	        {
-	        	int idEquipe = resultat.getInt("id_equipe");
+	        	int idEquipe = resultat.getInt("id_c");
 	        	String Nom = resultat.getString("nom_c");
 
 	        	malisteEquipeID.put(idEquipe, Nom);
@@ -610,7 +619,7 @@ public class Connexion {
 	}
 	
 	
-	public static void AjouterEquipe(Equipe equipe, Personne personne)
+	public static void AjouterEquipe(String nom)
 	{
 		try
 		{
@@ -619,7 +628,7 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			
-			int ajoutEquipe = statement.executeUpdate( "INSERT INTO composer_equipe (`id_equipe`,`id_p`) VALUES ('"+equipe.getId()+"', '"+personne.getId()+"')");
+			int ajoutEquipe = statement.executeUpdate ("INSERT INTO `candidat`(`nom_c`) VALUES ('"+nom+"')");
 	        if ( ajoutEquipe == 1) {
 	        	
 	        	
@@ -637,16 +646,20 @@ public class Connexion {
 	}
 
 	
-	public void AjouterCompetition(String NomCompet,LocalDate dateCompet,boolean enEquipe)
-	{
-		System.out.println(dateCompet + NomCompet);
+	public void AjouterCompetition(String NomCompet,Date dateCompet,boolean enEquipe)
+	{		
+		
+		SimpleDateFormat formater = null;		
+		formater = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(formater.format(dateCompet) + NomCompet);
 		try
 		{
 			Statement statement = null ;
 			
 			statement = connexion.createStatement();
 			
-	        if ( statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+dateCompet+"',"+enEquipe+")") == 1) {
+	        if ( statement.executeUpdate( "INSERT INTO competition (nom_comp,date_cloture,en_equipe) VALUES ('"+NomCompet+"','"+formater.format(dateCompet)+"',"+enEquipe+")") == 1) {
 	        	
 	        	
 	        	System.out.println("Compétition créée" );
@@ -1070,9 +1083,10 @@ public class Connexion {
 				int id = recupIDCompet(NomCompet);
 				statement = connexion.createStatement();
 
+				int SupprCandidatComp = statement.executeUpdate( "DELETE FROM participer WHERE id_comp = "+ id  +"" );
 				int SupprCompet = statement.executeUpdate( "DELETE FROM competition WHERE id_comp = "+ id  +"" );
 
-		        if(SupprCompet == 1){
+		        if(SupprCompet == 1 && SupprCandidatComp == 1){
 		        	System.out.println("La suppression a bien ete prise en compte" );
 		        }
 		        else{
