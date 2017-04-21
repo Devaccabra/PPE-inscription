@@ -12,7 +12,7 @@ public class CandidatTest {
 	Inscriptions inscriptionTest = Inscriptions.getInscriptions();
 	Equipe equipeTest = inscriptionTest.createEquipe("EQUIPE TEST");
 	Personne personneTest = inscriptionTest.createPersonne("TEST", "test","tTEST@gmail.com");
-	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", LocalDate.of(2017, 01, 01), false);
+	Competition competitionSoloTest = inscriptionTest.createCompetition("CompetSoloTest", null, false);
 	
 	
 	@Test

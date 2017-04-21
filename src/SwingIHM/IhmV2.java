@@ -420,9 +420,9 @@ public class IhmV2 {
 		btnAjouterPersonne.setBounds(189, 101, 84, 20);
 		panelPersonne.add(btnAjouterPersonne);
 		
-		JButton btnSupprimerPersonne = new JButton("Supprimer");
 		
-
+		
+		JButton btnSupprimerPersonne = new JButton("Supprimer");
 		
 		btnSupprimerPersonne.addMouseListener(new MouseAdapter() {
 					@Override
@@ -2523,7 +2523,7 @@ public class IhmV2 {
 				
 				java.util.Date dateCompet = format.parse(txtDateCompetition.getText());
 				java.sql.Date sqlDateCompet = new java.sql.Date(dateCompet.getTime());
-				Competition compet = Inscriptions.getInscriptions().createCompetition(nom, null, choix);
+				Competition compet = Inscriptions.getInscriptions().createCompetition(nom, dateCompet, choix);
 				/*inscriptions.Connexion.AjouterCompetition(txtNomCompetition.getText(), dateCompet);*/
 				competitions.add(compet);
 			} 
@@ -2532,7 +2532,7 @@ public class IhmV2 {
 				e1.printStackTrace();
 			}
 			txtNomCompetition.setText("Nom");
-			txtDateCompetition.setText("Date(YYYY-MM-DD)");
+			txtDateCompetition.setText("Date(yyyy-mm-dd)");
 		}
 	}
 	

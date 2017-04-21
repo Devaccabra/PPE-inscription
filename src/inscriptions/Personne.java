@@ -76,7 +76,6 @@ public class Personne extends Candidat
 	
 	boolean add(Equipe equipe)
 	{
-		Connexion.AjouterEquipe(equipe,this);
 		return equipes.add(equipe);
 	}
 

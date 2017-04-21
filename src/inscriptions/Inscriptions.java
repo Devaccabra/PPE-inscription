@@ -79,7 +79,7 @@ public class Inscriptions implements Serializable
 	 * @return
 	 */
 	
-	public Competition createCompetition(String nom, LocalDate dateCompet, boolean enEquipe)
+	public Competition createCompetition(String nom, Date dateCompet, boolean enEquipe)
 	{
 		/*if(!getInitBdd())
 		{*/
@@ -120,8 +120,7 @@ public class Inscriptions implements Serializable
 	}
 	
 	/**
-	 * CrÃ©Ã©e une Candidat de type Ã©quipe. Ceci est le seul moyen, il n'y a pas
-	 * de constructeur public dans {@link Equipe}.
+	 * Créer un Candidat de type équipe.
 	 * @param nom
 	 * @param prenom
 	 * @param mail
@@ -138,7 +137,8 @@ public class Inscriptions implements Serializable
 	public Equipe supprEquipe(String nom)
 	{
 		
-		getConnexion().SupprimerCandidat(nom);
+		getConnexion();
+		Connexion.SupprimerCandidat(nom);
 		Equipe equipe = new Equipe(this, nom);
 		candidats.remove(equipe);
 		return equipe;
@@ -147,7 +147,8 @@ public class Inscriptions implements Serializable
 	public Personne supprPers(String nom)
 	{
 		
-		getConnexion().SupprimerCandidat(nom);
+		getConnexion();
+		Connexion.SupprimerCandidat(nom);
 		String prenom = "";
 		String mail = "";
 		Personne personne = new Personne(this, nom, prenom, mail);
