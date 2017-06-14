@@ -162,29 +162,9 @@ public class IhmV2 {
 		tabbedPane.setBounds(0, 0, 652, 504);
 		frmGestionDesComptitions.getContentPane().add(tabbedPane);
 		
-		JPanel panelAccueil = new JPanel();
-		tabbedPane.addTab("Accueil", null, panelAccueil, null);
-		panelAccueil.setLayout(null);
 		
 		// PANEL ACCUEIL
-		
-		panelAccueil.add(getLblGestionDesInscriptions());
-		
-		panelAccueil.add(getlblNewLabel());
-		
-		panelAccueil.add(getlblDansCetteApplication());
-		
-		panelAccueil.add(getlblEquipe());
-		
-		panelAccueil.add(getlblCompetition());
-		
-		panelAccueil.add(getlblPersonne());
-		
-		panelAccueil.add(getlblEquipe_1());
-		
-		panelAccueil.add(getlblComptition());
-		
-		panelAccueil.add(getlblPersonne_1());
+	
 		
 		
 		// PANEL PERSONNE
@@ -906,7 +886,7 @@ public class IhmV2 {
 						btnModifNomPersonne.addActionListener(new modifierNomPersonne());
 						btnModifPrenomPersonne.addActionListener(new modifierPrenomPersonne());
 						btnModifMailPersonne.addActionListener(new modifierMailPersonne());
-						frmGestionDesComptitions.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{panelAccueil, tabbedPane, getLblGestionDesInscriptions(), panelEquipe, lblGestionDesquipes, panelPersonne, panelCompetition}));
+						frmGestionDesComptitions.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{ tabbedPane, getLblGestionDesInscriptions(), panelEquipe, lblGestionDesquipes, panelPersonne, panelCompetition}));
 		
 		
 		

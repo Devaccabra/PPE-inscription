@@ -224,7 +224,6 @@ public class Connexion {
 			
 			statement = connexion.createStatement();
 			resultat = statement.executeQuery( "SELECT * from composer_equipe E, personne P where E.id_p IN (SELECT id_p FROM personne)" );
-
 	        
 	        while ( resultat.next())
 	        {
